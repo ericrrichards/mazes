@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using JetBrains.Annotations;
 
@@ -109,6 +110,40 @@ namespace mazes {
             }
 
             return output.ToString();
+        }
+
+        public Image ToPng(int cellSize = 50) {
+            var width = cellSize * Columns;
+            var height = cellSize * Rows;
+
+            var img = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(img)) {
+                g.Clear(Color.White);
+                foreach (var cell in Cells) {
+                    var x1 = cell.Column * cellSize;
+                    var y1 = cell.Row * cellSize;
+                    var x2 = (cell.Column + 1) * cellSize;
+                    var y2 = (cell.Row + 1) * cellSize;
+
+
+                    if (cell.North == null) {
+                        g.DrawLine(Pens.Black, x1, y1, x2, y1);
+                    }
+                    if (cell.West == null) {
+                        g.DrawLine(Pens.Black, x1, y1, x1, y2);
+                    }
+
+                    if (!cell.Linked(cell.East)) {
+                        g.DrawLine(Pens.Black, x2, y1, x2, y2);
+                    }
+                    if (!cell.Linked(cell.South)) {
+                        g.DrawLine(Pens.Black, x1, y2, x2, y2);
+                    }
+                }
+            }
+
+
+            return img;
         }
     }
 }
