@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace mazes {
     public class Sidewinder {
-        public static Grid On(Grid grid) {
+        public static Grid Maze(Grid grid) {
             var rand = new Random();
             foreach (var row in grid.Row) {
                 var run = new List<Cell>();
