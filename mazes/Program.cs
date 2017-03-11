@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace mazes {
     class Program {
@@ -29,6 +30,16 @@ namespace mazes {
                 Console.WriteLine(i++);
                 Console.WriteLine(grid3);
             } while (btree.Step());
+
+            var grid4 = new Grid(10, 10);
+            var sidewinder = new Sidewinder(grid4);
+            i = 0;
+            do {
+                Console.WriteLine(i++);
+                Console.WriteLine(grid4);
+            } while (sidewinder.Step());
+
+            Application.Run(new MazeForm());
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace mazes {
-    public class BinaryTree {
+    public class BinaryTree : IMazeAlgorithm {
         private Grid _grid;
         private IEnumerator<Cell> _currentCell;
         private Random _rand;
