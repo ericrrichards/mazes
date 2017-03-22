@@ -9,18 +9,12 @@ namespace mazes {
 
     public class Sidewinder : IMazeAlgorithm {
         private Grid _grid;
-        private Random _rand;
+        private readonly Random _rand;
         private IEnumerator<Cell> _currentCell;
         private List<Cell> _run = new List<Cell>();
 
-        public Sidewinder(Grid grid) {
-            _grid = grid;
-            _currentCell = _grid.Cells.GetEnumerator();
-            _rand = new Random();
-        }
-
-        public static Grid Maze(Grid grid) {
-            var rand = new Random();
+        public static Grid Maze(Grid grid, int seed = -1) {
+            var rand = seed >= 0 ? new Random(seed) : new Random();
             foreach (var row in grid.Row) {
                 var run = new List<Cell>();
 
@@ -44,6 +38,12 @@ namespace mazes {
                 }
             }
             return grid;
+        }
+
+        public Sidewinder(Grid grid, int seed=-1) {
+            _grid = grid;
+            _currentCell = _grid.Cells.GetEnumerator();
+            _rand = seed >= 0 ? new Random(seed) : new Random();
         }
 
         public bool Step() {

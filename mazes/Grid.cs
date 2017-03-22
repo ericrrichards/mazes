@@ -87,7 +87,7 @@ namespace mazes {
 
         public override string ToString() {
             var output = new StringBuilder("+");
-            for (int i = 0; i < Columns; i++) {
+            for (var i = 0; i < Columns; i++) {
                 output.Append("---+");
             }
             output.AppendLine();
@@ -96,13 +96,13 @@ namespace mazes {
                 var top = "|";
                 var bottom = "+";
                 foreach (var cell in row) {
-                    var body = "   ";
+                    const string body = "   ";
                     var east = cell.Linked(cell.East) ? " " : "|";
 
                     top += body + east;
 
                     var south = cell.Linked(cell.South) ? "   " : "---";
-                    var corner = "+";
+                    const string corner = "+";
                     bottom += south + corner;
                 }
                 output.AppendLine(top);

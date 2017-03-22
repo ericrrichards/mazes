@@ -6,10 +6,10 @@ namespace mazes {
     public class BinaryTree : IMazeAlgorithm {
         private Grid _grid;
         private IEnumerator<Cell> _currentCell;
-        private Random _rand;
+        private readonly Random _rand;
 
-        public static Grid Maze(Grid grid) {
-            var rand = new Random();
+        public static Grid Maze(Grid grid, int seed = -1) {
+            var rand = seed >= 0 ? new Random(seed) : new Random();
             foreach (var cell in grid.Cells) {
                 var neighbors = new[] { cell.North, cell.East }.Where(c => c != null).ToList();
                 if (!neighbors.Any()) {
@@ -24,10 +24,10 @@ namespace mazes {
             return grid;
         }
 
-        public BinaryTree(Grid grid) {
+        public BinaryTree(Grid grid, int seed = -1) {
             _grid = grid;
             _currentCell = _grid.Cells.GetEnumerator();
-            _rand = new Random();
+            _rand = seed >= 0 ? new Random(seed) : new Random();
         }
         public bool Step() {
             var last = _currentCell.Current;

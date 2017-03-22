@@ -24,17 +24,20 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cbAlgorithm = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnStep = new System.Windows.Forms.Button();
-            this.pbMaze = new System.Windows.Forms.PictureBox();
             this.btnDraw = new System.Windows.Forms.Button();
+            this.btnStep = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbAlgorithm = new System.Windows.Forms.ComboBox();
+            this.pbMaze = new System.Windows.Forms.PictureBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -45,6 +48,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown1);
             this.splitContainer1.Panel1.Controls.Add(this.btnDraw);
             this.splitContainer1.Panel1.Controls.Add(this.btnStep);
             this.splitContainer1.Panel1.Controls.Add(this.btnReset);
@@ -58,29 +63,29 @@
             this.splitContainer1.SplitterDistance = 174;
             this.splitContainer1.TabIndex = 0;
             // 
-            // cbAlgorithm
+            // btnDraw
             // 
-            this.cbAlgorithm.FormattingEnabled = true;
-            this.cbAlgorithm.Items.AddRange(new object[] {
-            "BinaryTree",
-            "Sidewinder"});
-            this.cbAlgorithm.Location = new System.Drawing.Point(12, 29);
-            this.cbAlgorithm.Name = "cbAlgorithm";
-            this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
-            this.cbAlgorithm.TabIndex = 0;
+            this.btnDraw.Location = new System.Drawing.Point(12, 91);
+            this.btnDraw.Name = "btnDraw";
+            this.btnDraw.Size = new System.Drawing.Size(120, 23);
+            this.btnDraw.TabIndex = 1;
+            this.btnDraw.Text = "Draw";
+            this.btnDraw.UseVisualStyleBackColor = true;
+            this.btnDraw.Click += new System.EventHandler(this.btnDraw_Click);
             // 
-            // label1
+            // btnStep
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Algorithm";
+            this.btnStep.Location = new System.Drawing.Point(13, 122);
+            this.btnStep.Name = "btnStep";
+            this.btnStep.Size = new System.Drawing.Size(120, 23);
+            this.btnStep.TabIndex = 3;
+            this.btnStep.Text = "Step";
+            this.btnStep.UseVisualStyleBackColor = true;
+            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 116);
+            this.btnReset.Location = new System.Drawing.Point(12, 151);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(120, 23);
             this.btnReset.TabIndex = 2;
@@ -88,15 +93,26 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnStep
+            // label1
             // 
-            this.btnStep.Location = new System.Drawing.Point(13, 87);
-            this.btnStep.Name = "btnStep";
-            this.btnStep.Size = new System.Drawing.Size(120, 23);
-            this.btnStep.TabIndex = 3;
-            this.btnStep.Text = "Step";
-            this.btnStep.UseVisualStyleBackColor = true;
-            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(13, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Algorithm";
+            // 
+            // cbAlgorithm
+            // 
+            this.cbAlgorithm.FormattingEnabled = true;
+            this.cbAlgorithm.Items.AddRange(new object[] {
+            "BinaryTree",
+            "Sidewinder"});
+            this.cbAlgorithm.Location = new System.Drawing.Point(13, 64);
+            this.cbAlgorithm.Name = "cbAlgorithm";
+            this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
+            this.cbAlgorithm.TabIndex = 0;
             // 
             // pbMaze
             // 
@@ -109,15 +125,27 @@
             this.pbMaze.TabIndex = 0;
             this.pbMaze.TabStop = false;
             // 
-            // btnDraw
+            // numericUpDown1
             // 
-            this.btnDraw.Location = new System.Drawing.Point(12, 56);
-            this.btnDraw.Name = "btnDraw";
-            this.btnDraw.Size = new System.Drawing.Size(120, 23);
-            this.btnDraw.TabIndex = 1;
-            this.btnDraw.Text = "Draw";
-            this.btnDraw.UseVisualStyleBackColor = true;
-            this.btnDraw.Click += new System.EventHandler(this.btnDraw_Click);
+            this.numericUpDown1.Location = new System.Drawing.Point(13, 25);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(13, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Seed";
             // 
             // MazeForm
             // 
@@ -134,6 +162,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -147,5 +176,7 @@
         private System.Windows.Forms.ComboBox cbAlgorithm;
         private System.Windows.Forms.PictureBox pbMaze;
         private System.Windows.Forms.Button btnDraw;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

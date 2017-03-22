@@ -26,9 +26,9 @@ namespace mazes {
                 Image img = null;
                 var grid = new Grid(10, 10);
                 if (cbAlgorithm.SelectedItem == "BinaryTree") {
-                    img = BinaryTree.Maze(grid).ToPng();
+                    img = BinaryTree.Maze(grid, (int)numericUpDown1.Value).ToPng();
                 } else if (cbAlgorithm.SelectedItem == "Sidewinder") {
-                    img = Sidewinder.Maze(grid).ToPng();
+                    img = Sidewinder.Maze(grid, (int)numericUpDown1.Value).ToPng();
                 }
                 pbMaze.Image = img;
             }
@@ -41,9 +41,9 @@ namespace mazes {
                 Image img = null;
                 var grid = new Grid(10, 10);
                 if (cbAlgorithm.SelectedItem == "BinaryTree") {
-                    _algorithm = new BinaryTree(_grid);
+                    _algorithm = new BinaryTree(_grid, (int)numericUpDown1.Value);
                 } else if (cbAlgorithm.SelectedItem == "Sidewinder") {
-                    _algorithm = new Sidewinder(_grid);
+                    _algorithm = new Sidewinder(_grid, (int)numericUpDown1.Value);
                 }
             }
             btnStep.Enabled = true;
