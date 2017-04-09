@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace mazes.Algorithms {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-namespace mazes {
+    using mazes.Core;
+
     public class BinaryTree : IMazeAlgorithm {
-        private Grid _grid;
-        private IEnumerator<Cell> _currentCell;
+        private readonly Grid _grid;
+        private readonly IEnumerator<Cell> _currentCell;
         private readonly Random _rand;
 
         public static Grid Maze(Grid grid, int seed = -1) {
@@ -15,8 +17,7 @@ namespace mazes {
                 if (!neighbors.Any()) {
                     continue;
                 }
-                var index = rand.Next(neighbors.Count);
-                var neighbor = neighbors[index];
+                var neighbor = neighbors.Sample(rand);
                 if (neighbor != null) {
                     cell.Link(neighbor);
                 }
@@ -36,8 +37,7 @@ namespace mazes {
             if (cell != null) {
                 var neighbors = new[] { cell.North, cell.East }.Where(c => c != null).ToList();
                 if (neighbors.Any()) {
-                    var index = _rand.Next(neighbors.Count);
-                    var neighbor = neighbors[index];
+                    var neighbor = neighbors.Sample(_rand);
                     if (neighbor != null) {
                         cell.Link(neighbor);
                     }

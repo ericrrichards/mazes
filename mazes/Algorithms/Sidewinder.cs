@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace mazes.Algorithms {
+    using System;
+    using System.Collections.Generic;
 
-namespace mazes {
-    public interface IMazeAlgorithm {
-        bool Step();
-    }
+    using mazes.Core;
 
     public class Sidewinder : IMazeAlgorithm {
-        private Grid _grid;
+        private readonly Grid _grid;
         private readonly Random _rand;
-        private IEnumerator<Cell> _currentCell;
+        private readonly IEnumerator<Cell> _currentCell;
         private List<Cell> _run = new List<Cell>();
 
         public static Grid Maze(Grid grid, int seed = -1) {
@@ -27,7 +24,7 @@ namespace mazes {
                     var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && rand.Next(2) == 0);
 
                     if (shouldCloseOut) {
-                        var member = run[rand.Next(run.Count)];
+                        var member = run.Sample(rand);
                         if (member.North != null) {
                             member.Link(member.North);
                         }
@@ -62,7 +59,7 @@ namespace mazes {
                 var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && _rand.Next(2) == 0);
 
                 if (shouldCloseOut) {
-                    var member = _run[_rand.Next(_run.Count)];
+                    var member = _run.Sample(_rand);
                     if (member.North != null) {
                         member.Link(member.North);
                     }
@@ -74,4 +71,6 @@ namespace mazes {
             return last != _currentCell.Current;
         }
     }
+
+    
 }

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
+﻿namespace mazes.Core {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-namespace mazes {
+    using JetBrains.Annotations;
+
     public class Cell {
-        public int Row { get; set; }
-        public int Column { get; set; }
+        public int Row { get; }
+        public int Column { get; }
 
         [CanBeNull]
         public Cell North { get; set; }
@@ -49,6 +51,15 @@ namespace mazes {
 
         public List<Cell> Neighbors {
             get { return new[] {North, South, East, West}.Where(c => c != null).ToList(); }
+        }
+    }
+
+    public static class ListExtensions {
+        public static T Sample<T>(this List<T> list, Random rand = null) {
+            if (rand == null) {
+                rand = new Random();
+            }
+            return list[rand.Next(list.Count)];
         }
     }
 }

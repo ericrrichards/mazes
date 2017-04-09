@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using JetBrains.Annotations;
+﻿namespace mazes.Core {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Text;
 
-namespace mazes {
+    using JetBrains.Annotations;
+
     public class Grid {
-        public int Rows { get; set; }
-        public int Columns { get; set; }
-        public int Size { get { return Rows * Columns; } }
+        public int Rows { get; }
+        public int Columns { get; }
+        public int Size => Rows * Columns;
 
         private List<List<Cell>> _grid;
 

@@ -48,25 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryTree.cs" />
-    <Compile Include="Cell.cs" />
-    <Compile Include="Grid.cs" />
-    <Compile Include="MazeForm.cs">
+    <Compile Include="Algorithms\BinaryTree.cs" />
+    <Compile Include="Core\Cell.cs" />
+    <Compile Include="Core\Grid.cs" />
+    <Compile Include="Algorithms\IMazeAlgorithm.cs" />
+    <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MazeForm.Designer.cs">
+    <Compile Include="UI\MazeForm.Designer.cs">
       <DependentUpon>MazeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sidewinder.cs" />
+    <Compile Include="Algorithms\Sidewinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MazeForm.resx">
+    <EmbeddedResource Include="UI\MazeForm.resx">
       <DependentUpon>MazeForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
