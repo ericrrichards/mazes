@@ -52,6 +52,7 @@
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\Grid.cs" />
     <Compile Include="Algorithms\IMazeAlgorithm.cs" />
+    <Compile Include="Core\ListExtensions.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>
