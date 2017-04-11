@@ -7,11 +7,55 @@
     using JetBrains.Annotations;
 
     public class Grid {
+        // Dimensions of the grid
         public int Rows { get; }
         public int Columns { get; }
         public int Size => Rows * Columns;
 
+        // The actual grid
         private List<List<Cell>> _grid;
+
+        [CanBeNull]
+        public virtual Cell this[int row, int column] {
+            get {
+                if (row < 0 || row >= Rows) {
+                    return null;
+                }
+                if (column < 0 || column >= Columns) {
+                    return null;
+                }
+                return _grid[row][column];
+            }
+        }
+        [NotNull]
+        public Cell RandomCell() {
+            var rand = new Random();
+            var row = rand.Next(Rows);
+            var col = rand.Next(Columns);
+            var randomCell = this[row, col];
+            if (randomCell == null) {
+                throw new InvalidOperationException("Random cell is null");
+            }
+            return randomCell;
+        }
+        // Row iterator
+        public IEnumerable<List<Cell>> Row {
+            get {
+                foreach (var row in _grid) {
+                    yield return row;
+                }
+            }
+        }
+        // Cell iterator
+        public IEnumerable<Cell> Cells {
+            get {
+                foreach (var row in Row) {
+                    foreach (var cell in row) {
+                        yield return cell;
+                    }
+                }
+            }
+        }
 
         public Grid(int rows, int cols) {
             Rows = rows;
@@ -44,48 +88,6 @@
             }
         }
 
-        [CanBeNull]
-        public virtual Cell this[int row, int column] {
-            get {
-                if (row < 0 || row >= Rows) {
-                    return null;
-                }
-                if (column < 0 || column >= Columns) {
-                    return null;
-                }
-                return _grid[row][column];
-            }
-        }
-        [NotNull]
-        public Cell RandomCell() {
-            var rand = new Random();
-            var row = rand.Next(Rows);
-            var col = rand.Next(Columns);
-            var randomCell = this[row, col];
-            if (randomCell == null) {
-                throw new InvalidOperationException("Random cell is null");
-            }
-            return randomCell;
-        }
-
-        public IEnumerable<List<Cell>> Row {
-            get {
-                foreach (var row in _grid) {
-                    yield return row;
-                }
-            }
-        }
-
-        public IEnumerable<Cell> Cells {
-            get {
-                foreach (var row in Row) {
-                    foreach (var cell in row) {
-                        yield return cell;
-                    }
-                }
-            }
-        }
-
         public override string ToString() {
             var output = new StringBuilder("+");
             for (var i = 0; i < Columns; i++) {
@@ -98,11 +100,11 @@
                 var bottom = "+";
                 foreach (var cell in row) {
                     const string body = "   ";
-                    var east = cell.Linked(cell.East) ? " " : "|";
+                    var east = cell.IsLinked(cell.East) ? " " : "|";
 
                     top += body + east;
 
-                    var south = cell.Linked(cell.South) ? "   " : "---";
+                    var south = cell.IsLinked(cell.South) ? "   " : "---";
                     const string corner = "+";
                     bottom += south + corner;
                 }
@@ -113,7 +115,7 @@
             return output.ToString();
         }
 
-        public Image ToPng(int cellSize = 50) {
+        public Image ToImg(int cellSize = 50) {
             var width = cellSize * Columns;
             var height = cellSize * Rows;
 
@@ -134,10 +136,10 @@
                         g.DrawLine(Pens.Black, x1, y1, x1, y2);
                     }
 
-                    if (!cell.Linked(cell.East)) {
+                    if (!cell.IsLinked(cell.East)) {
                         g.DrawLine(Pens.Black, x2, y1, x2, y2);
                     }
-                    if (!cell.Linked(cell.South)) {
+                    if (!cell.IsLinked(cell.South)) {
                         g.DrawLine(Pens.Black, x1, y2, x2, y2);
                     }
                 }

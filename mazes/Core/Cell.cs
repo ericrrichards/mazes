@@ -5,9 +5,11 @@
     using JetBrains.Annotations;
 
     public class Cell {
+        // Position in the maze
         public int Row { get; }
         public int Column { get; }
 
+        // Neighboring cells
         [CanBeNull]
         public Cell North { get; set; }
         [CanBeNull]
@@ -17,7 +19,13 @@
         [CanBeNull]
         public Cell West { get; set; }
 
+        public List<Cell> Neighbors {
+            get { return new[] { North, South, East, West }.Where(c => c != null).ToList(); }
+        }
+
+        // Cells that are linked to this cell
         private readonly Dictionary<Cell, bool> _links;
+        public List<Cell> Links => _links.Keys.ToList();
 
         public Cell(int row, int col) {
             Row = row;
@@ -39,17 +47,13 @@
             }
         }
 
-        public List<Cell> Links => _links.Keys.ToList();
-
-        public bool Linked(Cell cell) {
+        public bool IsLinked(Cell cell) {
             if (cell == null) {
                 return false;
             }
             return _links.ContainsKey(cell);
         }
 
-        public List<Cell> Neighbors {
-            get { return new[] {North, South, East, West}.Where(c => c != null).ToList(); }
-        }
+        
     }
 }
