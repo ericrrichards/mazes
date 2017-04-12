@@ -2,7 +2,9 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Runtime.Remoting.Channels;
     using System.Text;
+    using System.Xml;
 
     using JetBrains.Annotations;
 
@@ -99,7 +101,7 @@
                 var top = "|";
                 var bottom = "+";
                 foreach (var cell in row) {
-                    const string body = "   ";
+                    var body = $" {ContentsOf(cell)} ";
                     var east = cell.IsLinked(cell.East) ? " " : "|";
 
                     top += body + east;
@@ -115,6 +117,10 @@
             return output.ToString();
         }
 
+        protected virtual string ContentsOf(Cell cell) {
+            return " ";
+        }
+
         public Image ToImg(int cellSize = 50) {
             var width = cellSize * Columns;
             var height = cellSize * Rows;
@@ -122,31 +128,49 @@
             var img = new Bitmap(width, height);
             using (var g = Graphics.FromImage(img)) {
                 g.Clear(Color.White);
-                foreach (var cell in Cells) {
-                    var x1 = cell.Column * cellSize;
-                    var y1 = cell.Row * cellSize;
-                    var x2 = (cell.Column + 1) * cellSize;
-                    var y2 = (cell.Row + 1) * cellSize;
+                foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls}) {
 
 
-                    if (cell.North == null) {
-                        g.DrawLine(Pens.Black, x1, y1, x2, y1);
-                    }
-                    if (cell.West == null) {
-                        g.DrawLine(Pens.Black, x1, y1, x1, y2);
-                    }
+                    foreach (var cell in Cells) {
+                        var x1 = cell.Column * cellSize;
+                        var y1 = cell.Row * cellSize;
+                        var x2 = (cell.Column + 1) * cellSize;
+                        var y2 = (cell.Row + 1) * cellSize;
 
-                    if (!cell.IsLinked(cell.East)) {
-                        g.DrawLine(Pens.Black, x2, y1, x2, y2);
-                    }
-                    if (!cell.IsLinked(cell.South)) {
-                        g.DrawLine(Pens.Black, x1, y2, x2, y2);
+                        if (mode == DrawMode.Background) {
+                            var color = BackgroundColorFor(cell);
+                            if (color != null) {
+                                g.FillRectangle(new SolidBrush(color.GetValueOrDefault()), x1, y1, cellSize, cellSize );
+                            }
+                        } else {
+                            if (cell.North == null) {
+                                g.DrawLine(Pens.Black, x1, y1, x2, y1);
+                            }
+                            if (cell.West == null) {
+                                g.DrawLine(Pens.Black, x1, y1, x1, y2);
+                            }
+
+                            if (!cell.IsLinked(cell.East)) {
+                                g.DrawLine(Pens.Black, x2, y1, x2, y2);
+                            }
+                            if (!cell.IsLinked(cell.South)) {
+                                g.DrawLine(Pens.Black, x1, y2, x2, y2);
+                            }
+                        }
                     }
                 }
             }
 
 
             return img;
+        }
+
+        protected virtual Color? BackgroundColorFor(Cell cell) {
+            return null;
+        }
+
+        private enum DrawMode {
+            Background, Walls
         }
     }
 }

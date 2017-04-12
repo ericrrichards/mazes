@@ -54,6 +54,31 @@
             return _links.ContainsKey(cell);
         }
 
-        
+        public Distances Distances {
+            get {
+                var distances = new Distances(this);
+                var frontier = new HashSet<Cell> {
+                    this
+                };
+
+                while (frontier.Any()) {
+                    var newFrontier = new HashSet<Cell>();
+
+                    foreach (var cell in frontier) {
+                        foreach (var linked in cell.Links) {
+                            if (distances[linked] >= 0) {
+                                continue;
+                            }
+                            distances[linked] = distances[cell] + 1;
+                            newFrontier.Add(linked);
+                        }
+                    }
+                    frontier = newFrontier;
+                }
+                return distances;
+            }
+        }
+
+
     }
 }
