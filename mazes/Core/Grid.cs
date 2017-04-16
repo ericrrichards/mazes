@@ -128,7 +128,7 @@
             var img = new Bitmap(width, height);
             using (var g = Graphics.FromImage(img)) {
                 g.Clear(Color.White);
-                foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls}) {
+                foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls, DrawMode.Path, }) {
 
 
                     foreach (var cell in Cells) {
@@ -142,7 +142,7 @@
                             if (color != null) {
                                 g.FillRectangle(new SolidBrush(color.GetValueOrDefault()), x1, y1, cellSize, cellSize );
                             }
-                        } else {
+                        } else if (mode == DrawMode.Walls) {
                             if (cell.North == null) {
                                 g.DrawLine(Pens.Black, x1, y1, x2, y1);
                             }
@@ -156,6 +156,8 @@
                             if (!cell.IsLinked(cell.South)) {
                                 g.DrawLine(Pens.Black, x1, y2, x2, y2);
                             }
+                        } else if (mode == DrawMode.Path) {
+                            DrawPath(cell, g, cellSize);
                         }
                     }
                 }
@@ -165,12 +167,16 @@
             return img;
         }
 
+        protected  virtual void DrawPath(Cell cell, Graphics g, int cellSize) {
+            
+        }
+
         protected virtual Color? BackgroundColorFor(Cell cell) {
             return null;
         }
 
         private enum DrawMode {
-            Background, Walls
+            Background, Walls,  Path
         }
     }
 }

@@ -28,8 +28,9 @@
 
         public Distances PathTo(Cell goal) {
             var current = goal;
-            var breadcrumbs = new Distances(Root);
-            breadcrumbs[current] = _cells[current];
+            var breadcrumbs = new Distances(Root) {
+                [current] = _cells[current]
+            };
 
             while (current != Root) {
                 foreach (var neighbor in current.Links) {
@@ -56,6 +57,5 @@
                 return (maxCell, maxDistance);
             }
         }
-
     }
 }

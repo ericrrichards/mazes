@@ -5,7 +5,12 @@
         private Distances _distances;
         private Cell _farthest;
         private int _maximum;
-        public ColoredGrid(int rows, int cols) : base(rows, cols) { }
+
+        public ColoredGrid(int rows, int cols) : base(rows, cols) {
+            BackColor = Color.Green;
+        }
+
+        public Color BackColor { get; set; }
 
         public Distances Distances {
             get => _distances;
@@ -21,9 +26,8 @@
             }
             var distance = Distances[cell];
             var intensity = (_maximum - distance) / (float)_maximum;
-            var dark = (int)(255 * intensity);
-            var bright = (int)(128 + 127 * intensity);
-            return Color.FromArgb(dark, bright, dark);
+
+            return BackColor.Scale(intensity);
         }
     }
 }

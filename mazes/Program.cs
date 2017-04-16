@@ -50,8 +50,8 @@ namespace mazes {
             colorGrid.Distances = start.Distances;
 
             colorGrid.ToImg().Save("colorized.png");
-            Process.Start("colorized.png");
-
+            //Process.Start("colorized.png");
+            
             Application.Run(new MazeForm());
         }
     }

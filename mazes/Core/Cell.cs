@@ -1,5 +1,6 @@
 ﻿namespace mazes.Core {
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
 
     using JetBrains.Annotations;
@@ -8,6 +9,7 @@
         // Position in the maze
         public int Row { get; }
         public int Column { get; }
+        public Point Location => new Point(Column, Row);
 
         // Neighboring cells
         [CanBeNull]
@@ -78,7 +80,6 @@
                 return distances;
             }
         }
-
-
+        
     }
 }
