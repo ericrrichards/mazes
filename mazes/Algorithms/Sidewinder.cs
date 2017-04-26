@@ -71,6 +71,4 @@ namespace mazes.Algorithms {
             return last != _currentCell.Current;
         }
     }
-
-    
 }

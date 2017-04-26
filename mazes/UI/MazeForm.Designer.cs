@@ -25,38 +25,38 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnLongestPath = new System.Windows.Forms.Button();
+            this.btnDrawPath = new System.Windows.Forms.Button();
             this.btnColorize = new System.Windows.Forms.Button();
             this.btnPickColor = new System.Windows.Forms.Button();
             this.pbColor = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudRNGSeed = new System.Windows.Forms.NumericUpDown();
             this.btnDraw = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbAlgorithm = new System.Windows.Forms.ComboBox();
-            this.pbMaze = new System.Windows.Forms.PictureBox();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.cmsPickStart = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiPickStart = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslStartPoint = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEndPoint = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmiPickEnd = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDrawPath = new System.Windows.Forms.Button();
-            this.btnLongestPath = new System.Windows.Forms.Button();
             this.tsslPathLength = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbMaze = new System.Windows.Forms.PictureBox();
+            this.cmsPickStart = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiPickStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPickEnd = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
             this.cmsPickStart.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -74,7 +74,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.pbColor);
             this.splitContainer1.Panel1.Controls.Add(this.btnSave);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown1);
+            this.splitContainer1.Panel1.Controls.Add(this.nudRNGSeed);
             this.splitContainer1.Panel1.Controls.Add(this.btnDraw);
             this.splitContainer1.Panel1.Controls.Add(this.btnStep);
             this.splitContainer1.Panel1.Controls.Add(this.btnReset);
@@ -88,6 +88,26 @@
             this.splitContainer1.Size = new System.Drawing.Size(752, 581);
             this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnLongestPath
+            // 
+            this.btnLongestPath.Location = new System.Drawing.Point(12, 308);
+            this.btnLongestPath.Name = "btnLongestPath";
+            this.btnLongestPath.Size = new System.Drawing.Size(120, 23);
+            this.btnLongestPath.TabIndex = 11;
+            this.btnLongestPath.Text = "Draw Longest Path";
+            this.btnLongestPath.UseVisualStyleBackColor = true;
+            this.btnLongestPath.Click += new System.EventHandler(this.btnLongestPath_Click);
+            // 
+            // btnDrawPath
+            // 
+            this.btnDrawPath.Location = new System.Drawing.Point(12, 279);
+            this.btnDrawPath.Name = "btnDrawPath";
+            this.btnDrawPath.Size = new System.Drawing.Size(120, 23);
+            this.btnDrawPath.TabIndex = 10;
+            this.btnDrawPath.Text = "Draw Path";
+            this.btnDrawPath.UseVisualStyleBackColor = true;
+            this.btnDrawPath.Click += new System.EventHandler(this.btnDrawPath_Click);
             // 
             // btnColorize
             // 
@@ -142,15 +162,15 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(13, 25);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudRNGSeed.Location = new System.Drawing.Point(13, 25);
+            this.nudRNGSeed.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 4;
+            this.nudRNGSeed.Name = "nudRNGSeed";
+            this.nudRNGSeed.Size = new System.Drawing.Size(120, 20);
+            this.nudRNGSeed.TabIndex = 4;
             // 
             // btnDraw
             // 
@@ -195,48 +215,10 @@
             // cbAlgorithm
             // 
             this.cbAlgorithm.FormattingEnabled = true;
-            this.cbAlgorithm.Items.AddRange(new object[] {
-            "BinaryTree",
-            "Sidewinder"});
             this.cbAlgorithm.Location = new System.Drawing.Point(13, 64);
             this.cbAlgorithm.Name = "cbAlgorithm";
             this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
             this.cbAlgorithm.TabIndex = 0;
-            // 
-            // pbMaze
-            // 
-            this.pbMaze.BackColor = System.Drawing.Color.White;
-            this.pbMaze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbMaze.ContextMenuStrip = this.cmsPickStart;
-            this.pbMaze.Location = new System.Drawing.Point(3, 3);
-            this.pbMaze.Name = "pbMaze";
-            this.pbMaze.Size = new System.Drawing.Size(550, 550);
-            this.pbMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbMaze.TabIndex = 0;
-            this.pbMaze.TabStop = false;
-            this.pbMaze.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMaze_MouseDown);
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Filter = "PNG files|*.png|JPEG files|*.jpg";
-            // 
-            // colorDialog1
-            // 
-            this.colorDialog1.SolidColorOnly = true;
-            // 
-            // cmsPickStart
-            // 
-            this.cmsPickStart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiPickStart,
-            this.tsmiPickEnd});
-            this.cmsPickStart.Name = "cmsPickStart";
-            this.cmsPickStart.Size = new System.Drawing.Size(138, 48);
-            // 
-            // tsmiPickStart
-            // 
-            this.tsmiPickStart.Name = "tsmiPickStart";
-            this.tsmiPickStart.Size = new System.Drawing.Size(137, 22);
-            this.tsmiPickStart.Text = "Pick as Start";
             // 
             // statusStrip1
             // 
@@ -262,37 +244,52 @@
             this.tsslEndPoint.Size = new System.Drawing.Size(33, 17);
             this.tsslEndPoint.Text = "End: ";
             // 
+            // tsslPathLength
+            // 
+            this.tsslPathLength.Name = "tsslPathLength";
+            this.tsslPathLength.Size = new System.Drawing.Size(77, 17);
+            this.tsslPathLength.Text = "Path Length: ";
+            // 
+            // pbMaze
+            // 
+            this.pbMaze.BackColor = System.Drawing.Color.White;
+            this.pbMaze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbMaze.ContextMenuStrip = this.cmsPickStart;
+            this.pbMaze.Location = new System.Drawing.Point(3, 3);
+            this.pbMaze.Name = "pbMaze";
+            this.pbMaze.Size = new System.Drawing.Size(550, 550);
+            this.pbMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbMaze.TabIndex = 0;
+            this.pbMaze.TabStop = false;
+            this.pbMaze.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMaze_MouseDown);
+            // 
+            // cmsPickStart
+            // 
+            this.cmsPickStart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiPickStart,
+            this.tsmiPickEnd});
+            this.cmsPickStart.Name = "cmsPickStart";
+            this.cmsPickStart.Size = new System.Drawing.Size(138, 48);
+            // 
+            // tsmiPickStart
+            // 
+            this.tsmiPickStart.Name = "tsmiPickStart";
+            this.tsmiPickStart.Size = new System.Drawing.Size(137, 22);
+            this.tsmiPickStart.Text = "Pick as Start";
+            // 
             // tsmiPickEnd
             // 
             this.tsmiPickEnd.Name = "tsmiPickEnd";
             this.tsmiPickEnd.Size = new System.Drawing.Size(137, 22);
             this.tsmiPickEnd.Text = "Pick as End";
             // 
-            // btnDrawPath
+            // saveFileDialog1
             // 
-            this.btnDrawPath.Location = new System.Drawing.Point(12, 279);
-            this.btnDrawPath.Name = "btnDrawPath";
-            this.btnDrawPath.Size = new System.Drawing.Size(120, 23);
-            this.btnDrawPath.TabIndex = 10;
-            this.btnDrawPath.Text = "Draw Path";
-            this.btnDrawPath.UseVisualStyleBackColor = true;
-            this.btnDrawPath.Click += new System.EventHandler(this.btnDrawPath_Click);
+            this.saveFileDialog1.Filter = "PNG files|*.png|JPEG files|*.jpg";
             // 
-            // btnLongestPath
+            // colorDialog1
             // 
-            this.btnLongestPath.Location = new System.Drawing.Point(12, 308);
-            this.btnLongestPath.Name = "btnLongestPath";
-            this.btnLongestPath.Size = new System.Drawing.Size(120, 23);
-            this.btnLongestPath.TabIndex = 11;
-            this.btnLongestPath.Text = "Draw Longest Path";
-            this.btnLongestPath.UseVisualStyleBackColor = true;
-            this.btnLongestPath.Click += new System.EventHandler(this.btnLongestPath_Click);
-            // 
-            // tsslPathLength
-            // 
-            this.tsslPathLength.Name = "tsslPathLength";
-            this.tsslPathLength.Size = new System.Drawing.Size(77, 17);
-            this.tsslPathLength.Text = "Path Length: ";
+            this.colorDialog1.SolidColorOnly = true;
             // 
             // MazeForm
             // 
@@ -311,11 +308,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
-            this.cmsPickStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
+            this.cmsPickStart.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -330,7 +327,7 @@
         private System.Windows.Forms.PictureBox pbMaze;
         private System.Windows.Forms.Button btnDraw;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudRNGSeed;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnPickColor;

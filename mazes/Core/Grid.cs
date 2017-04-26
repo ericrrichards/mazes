@@ -30,8 +30,9 @@
             }
         }
         [NotNull]
-        public Cell RandomCell() {
-            var rand = new Random();
+        public Cell RandomCell(Random random = null) {
+            
+            var rand = random ?? new Random();
             var row = rand.Next(Rows);
             var col = rand.Next(Columns);
             var randomCell = this[row, col];

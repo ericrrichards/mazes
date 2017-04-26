@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AldousBroder.cs" />
     <Compile Include="Algorithms\BinaryTree.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\ColoredGrid.cs" />
