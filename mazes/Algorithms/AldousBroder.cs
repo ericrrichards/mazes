@@ -9,6 +9,7 @@ namespace mazes.Algorithms {
         private readonly Grid _grid;
         private readonly Random _rand;
         private Cell _currentCell;
+        public Cell CurrentCell => _currentCell;
         private int _unvisited;
 
 

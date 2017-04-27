@@ -8,6 +8,8 @@
     public class BinaryTree : IMazeAlgorithm {
         private readonly Grid _grid;
         private readonly IEnumerator<Cell> _currentCell;
+        public Cell CurrentCell => _currentCell.Current;
+
         private readonly Random _rand;
 
         public static Grid Maze(Grid grid, int seed = -1) {

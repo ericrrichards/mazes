@@ -97,6 +97,7 @@ namespace mazes.UI {
             if (!_algorithm.Step()) {
                 btnStep.Enabled = false;
             }
+            _grid.ActiveCell = _algorithm.CurrentCell;
             pbMaze.Image = _grid.ToImg();
         }
 

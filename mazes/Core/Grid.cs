@@ -17,6 +17,8 @@
         // The actual grid
         private List<List<Cell>> _grid;
 
+        public Cell ActiveCell { get; set; }
+
         [CanBeNull]
         public virtual Cell this[int row, int column] {
             get {
@@ -157,6 +159,11 @@
                             if (!cell.IsLinked(cell.South)) {
                                 g.DrawLine(Pens.Black, x1, y2, x2, y2);
                             }
+
+                            if (cell == ActiveCell) {
+                                g.FillRectangle(Brushes.GreenYellow, x1+2, y1+2, cellSize-4, cellSize-4);
+                            }
+
                         } else if (mode == DrawMode.Path) {
                             DrawPath(cell, g, cellSize);
                         }

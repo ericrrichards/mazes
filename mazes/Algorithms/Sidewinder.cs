@@ -8,6 +8,7 @@ namespace mazes.Algorithms {
         private readonly Grid _grid;
         private readonly Random _rand;
         private readonly IEnumerator<Cell> _currentCell;
+        public Cell CurrentCell => _currentCell.Current;
         private List<Cell> _run = new List<Cell>();
 
         public static Grid Maze(Grid grid, int seed = -1) {
