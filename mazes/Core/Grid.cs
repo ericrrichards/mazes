@@ -1,4 +1,6 @@
-﻿namespace mazes.Core {
+﻿using System.Linq;
+
+namespace mazes.Core {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
@@ -185,6 +187,10 @@
 
         private enum DrawMode {
             Background, Walls,  Path
+        }
+
+        public List<Cell> Deadends() {
+            return Cells.Where(c => c.Links.Count == 1).ToList();
         }
     }
 }

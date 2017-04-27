@@ -71,7 +71,7 @@ namespace mazes.UI {
                 MessageBox.Show("No algorithm type for " + algo);
                 return false;
             }
-            type.GetMethod("Maze").Invoke(null, new object[] {grid, (int) nudRNGSeed.Value});
+            type.GetMethod("Maze", new[]{typeof(Grid), typeof(int)}).Invoke(null, new object[] {grid, (int) nudRNGSeed.Value});
             return true;
         }
 
