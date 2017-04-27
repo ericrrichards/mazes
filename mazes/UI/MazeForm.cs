@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace mazes.UI {
     using System;
@@ -17,6 +18,8 @@ namespace mazes.UI {
         private Point? _tempPoint;
         private Point? _startPoint;
         private Point? _endPoint;
+
+        private bool IsAnimating;
 
         public MazeForm() {
             InitializeComponent();
@@ -81,6 +84,7 @@ namespace mazes.UI {
             btnStep.Enabled = true;
             _startPoint = null;
             _endPoint = null;
+            IsAnimating = false;
         }
 
         private void SetAlgorithm() {
@@ -182,6 +186,21 @@ namespace mazes.UI {
 
                 pbMaze.Image = colorGrid.ToImg();
             }
+        }
+
+        private void btnAnimate_Click(object sender, EventArgs e) {
+            Cursor = Cursors.WaitCursor;
+            IsAnimating = true;
+            while (_algorithm.Step() && IsAnimating) {
+                _grid.ActiveCell = _algorithm.CurrentCell;
+                pbMaze.Image = _grid.ToImg();
+
+                Application.DoEvents();
+                Thread.Sleep(100);
+            }
+            btnStep.Enabled = false;
+            Cursor = Cursors.Default;
+            IsAnimating = false;
         }
     }
 }

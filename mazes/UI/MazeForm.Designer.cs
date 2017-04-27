@@ -48,6 +48,7 @@
             this.tsmiPickEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnAnimate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnAnimate);
             this.splitContainer1.Panel1.Controls.Add(this.btnLongestPath);
             this.splitContainer1.Panel1.Controls.Add(this.btnDrawPath);
             this.splitContainer1.Panel1.Controls.Add(this.btnColorize);
@@ -91,7 +93,7 @@
             // 
             // btnLongestPath
             // 
-            this.btnLongestPath.Location = new System.Drawing.Point(12, 308);
+            this.btnLongestPath.Location = new System.Drawing.Point(12, 337);
             this.btnLongestPath.Name = "btnLongestPath";
             this.btnLongestPath.Size = new System.Drawing.Size(120, 23);
             this.btnLongestPath.TabIndex = 11;
@@ -101,7 +103,7 @@
             // 
             // btnDrawPath
             // 
-            this.btnDrawPath.Location = new System.Drawing.Point(12, 279);
+            this.btnDrawPath.Location = new System.Drawing.Point(12, 308);
             this.btnDrawPath.Name = "btnDrawPath";
             this.btnDrawPath.Size = new System.Drawing.Size(120, 23);
             this.btnDrawPath.TabIndex = 10;
@@ -111,7 +113,7 @@
             // 
             // btnColorize
             // 
-            this.btnColorize.Location = new System.Drawing.Point(12, 245);
+            this.btnColorize.Location = new System.Drawing.Point(12, 274);
             this.btnColorize.Name = "btnColorize";
             this.btnColorize.Size = new System.Drawing.Size(120, 28);
             this.btnColorize.TabIndex = 9;
@@ -121,7 +123,7 @@
             // 
             // btnPickColor
             // 
-            this.btnPickColor.Location = new System.Drawing.Point(47, 210);
+            this.btnPickColor.Location = new System.Drawing.Point(47, 239);
             this.btnPickColor.Name = "btnPickColor";
             this.btnPickColor.Size = new System.Drawing.Size(85, 28);
             this.btnPickColor.TabIndex = 8;
@@ -132,7 +134,7 @@
             // pbColor
             // 
             this.pbColor.BackColor = System.Drawing.Color.Red;
-            this.pbColor.Location = new System.Drawing.Point(12, 210);
+            this.pbColor.Location = new System.Drawing.Point(12, 239);
             this.pbColor.Name = "pbColor";
             this.pbColor.Size = new System.Drawing.Size(29, 28);
             this.pbColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -142,7 +144,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 180);
+            this.btnSave.Location = new System.Drawing.Point(12, 209);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 23);
             this.btnSave.TabIndex = 6;
@@ -160,7 +162,7 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Seed";
             // 
-            // numericUpDown1
+            // nudRNGSeed
             // 
             this.nudRNGSeed.Location = new System.Drawing.Point(13, 25);
             this.nudRNGSeed.Maximum = new decimal(new int[] {
@@ -174,7 +176,7 @@
             // 
             // btnDraw
             // 
-            this.btnDraw.Location = new System.Drawing.Point(12, 91);
+            this.btnDraw.Location = new System.Drawing.Point(12, 180);
             this.btnDraw.Name = "btnDraw";
             this.btnDraw.Size = new System.Drawing.Size(120, 23);
             this.btnDraw.TabIndex = 1;
@@ -194,7 +196,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 151);
+            this.btnReset.Location = new System.Drawing.Point(12, 91);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(120, 23);
             this.btnReset.TabIndex = 2;
@@ -219,6 +221,7 @@
             this.cbAlgorithm.Name = "cbAlgorithm";
             this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
             this.cbAlgorithm.TabIndex = 0;
+            this.cbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.ResetMaze);
             // 
             // statusStrip1
             // 
@@ -291,6 +294,16 @@
             // 
             this.colorDialog1.SolidColorOnly = true;
             // 
+            // btnAnimate
+            // 
+            this.btnAnimate.Location = new System.Drawing.Point(12, 151);
+            this.btnAnimate.Name = "btnAnimate";
+            this.btnAnimate.Size = new System.Drawing.Size(120, 23);
+            this.btnAnimate.TabIndex = 12;
+            this.btnAnimate.Text = "Animate";
+            this.btnAnimate.UseVisualStyleBackColor = true;
+            this.btnAnimate.Click += new System.EventHandler(this.btnAnimate_Click);
+            // 
             // MazeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,5 +356,6 @@
         private System.Windows.Forms.Button btnDrawPath;
         private System.Windows.Forms.Button btnLongestPath;
         private System.Windows.Forms.ToolStripStatusLabel tsslPathLength;
+        private System.Windows.Forms.Button btnAnimate;
     }
 }
