@@ -1,15 +1,12 @@
 namespace mazes.Core {
     using System;
-    using System.Collections.Generic;
 
-    public class MaskedGrid : Grid {
+    public class MaskedColoredPathGrid : ColoredPathGrid {
         public Mask Mask { get; }
-
-        public MaskedGrid(Mask mask) : base(mask.Rows, mask.Columns) {
+        public MaskedColoredPathGrid(Mask mask) : base(mask.Rows, mask.Columns) {
             Mask = mask;
             Mask.UnlinkMaskedCells(Mask, Cells);
         }
-
         public override Cell RandomCell(Random random = null) {
             return Mask.GetRandomCell(this, random);
         }

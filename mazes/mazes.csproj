@@ -67,6 +67,8 @@
     <Compile Include="Core\IntExtensions.cs" />
     <Compile Include="Core\ListExtensions.cs" />
     <Compile Include="Core\Mask.cs" />
+    <Compile Include="Core\MaskedColoredGrid.cs" />
+    <Compile Include="Core\MaskedColoredPathGrid.cs" />
     <Compile Include="Core\MaskedGrid.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>

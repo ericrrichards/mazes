@@ -6,10 +6,10 @@
     using System.Linq;
 
     public class Mask {
-        public int Rows { get; set; }
-        public int Columns { get; set; }
+        public int Rows { get; }
+        public int Columns { get; }
 
-        private List<List<bool>> Bits { get; set; }
+        private List<List<bool>> Bits { get; }
 
         public Mask(int rows, int columns) {
             Rows = rows;
@@ -99,5 +99,36 @@
             } while (true);
         }
 
+        public static void UnlinkMaskedCells(Mask mask, IEnumerable<Cell> cells) {
+            foreach (var cell in cells) {
+                var row = cell.Row;
+                var col = cell.Column;
+
+                if (!mask[row, col]) {
+                    // Unlink this cell from its neighbors
+                    if (cell.North != null)
+                        cell.North.South = null;
+                    cell.North = null;
+                    if (cell.South != null)
+                        cell.South.North = null;
+                    cell.South = null;
+                    if (cell.West != null)
+                        cell.West.East = null;
+                    cell.West = null;
+                    if (cell.East != null)
+                        cell.East.West = null;
+                    cell.East = null;
+                }
+            }
+        }
+
+        public Cell GetRandomCell(Grid grid, Random random ) {
+            var location = RandomLocation(random);
+            var randomCell = grid[location.Y, location.X];
+            if (randomCell == null) {
+                throw new InvalidOperationException("Invalid random cell location: " + location);
+            }
+            return randomCell;
+        }
     }
 }

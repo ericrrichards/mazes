@@ -277,7 +277,7 @@
             this.pbMaze.Location = new System.Drawing.Point(3, 3);
             this.pbMaze.Name = "pbMaze";
             this.pbMaze.Size = new System.Drawing.Size(550, 550);
-            this.pbMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbMaze.TabIndex = 0;
             this.pbMaze.TabStop = false;
             this.pbMaze.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbMaze_MouseDown);

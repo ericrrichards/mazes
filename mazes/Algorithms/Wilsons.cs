@@ -15,7 +15,7 @@ namespace mazes.Algorithms {
         public static Grid Maze(Grid grid, int seed = -1) {
             var rand = seed >= 0 ? new Random(seed) : new Random();
 
-            var unvisited = grid.Cells.ToList();
+            var unvisited = grid.Cells.Where(c=>c.Neighbors.Any()).ToList();
 
             var first = unvisited.Sample(rand);
             unvisited.Remove(first);
@@ -50,7 +50,6 @@ namespace mazes.Algorithms {
             _rand = seed >= 0 ? new Random(seed) : new Random();
             _unvisited = _grid.Cells.ToList();
             var firstCell = _unvisited.Sample(_rand);
-            Console.WriteLine(firstCell.Location);
             _unvisited.Remove(firstCell);
             _currentCell = _unvisited.Sample(_rand);
             _path = null;
@@ -72,7 +71,6 @@ namespace mazes.Algorithms {
                 } else {
                     _path.Add(_currentCell);
                 }
-                Console.WriteLine(_path.Select(p => p.Location).Aggregate(string.Empty, (s, point) => s + point + ", "));
             } else {
                 for (int i = 0; i < _path.Count - 1; i++) {
                     _path[i].Link(_path[i + 1]);
