@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 
 namespace mazes {
+    using System.Collections.Generic;
     using System.Diagnostics;
 
     using mazes.Algorithms;
@@ -11,48 +12,47 @@ namespace mazes {
     internal static class Program {
         [STAThread]
         private static void Main(string[] args) {
-            
-            var grid = new Grid(10,10);
+            //MaskedMazes();
+
+            Application.Run(new MazeForm());
+        }
+
+        private static void MaskedMazes() {
+            var mask = new Mask(5, 5);
+            mask[0, 0] = false;
+            mask[2, 2] = false;
+            mask[4, 4] = false;
+
+            var grid = new MaskedGrid(mask);
+            RecursiveBacktracker.Maze(grid, 0);
+            Console.WriteLine(grid);
+
+            var maskStr = new List<string> {
+                "X........X",
+                "....XX....",
+                "...XXXX...",
+                "....XX....",
+                "X........X",
+                "X........X",
+                "....XX....",
+                "...XXXX...",
+                "....XX....",
+                "X........X"
+            };
+            mask = Mask.FromString(maskStr);
+            grid = new MaskedGrid(mask);
+            RecursiveBacktracker.Maze(grid, 0);
             Console.WriteLine(grid);
             var img = grid.ToImg();
-            img.Save("grid_img.png");
+            img.Save("masked.png");
+            Process.Start("masked.png");
 
-
-            var distGrid = new DistanceGrid(10,10);
-            BinaryTree.Maze(distGrid);
-            var start = distGrid[0, 0];
-            var distances = start.Distances;
-            distGrid.Distances = distances;
-            Console.WriteLine(distGrid);
-
-            distGrid.Distances = distances.PathTo(distGrid[distGrid.Rows-1, 0]);
-            Console.WriteLine(distGrid);
-
-
-            var longestGrid = new DistanceGrid(10,10);
-            BinaryTree.Maze(longestGrid);
-            start = longestGrid[0, 0];
-            distances = start.Distances;
-            var (newStart, distance) = distances.Max;
-
-            var newDistances = newStart.Distances;
-
-            var (goal, distance2) = newDistances.Max;
-
-            longestGrid.Distances = newDistances.PathTo(goal);
-            Console.WriteLine(longestGrid);
-
-
-            var colorGrid = new ColoredGrid(25,25);
-            BinaryTree.Maze(colorGrid);
-            start = colorGrid[colorGrid.Rows / 2, colorGrid.Columns / 2];
-
-            colorGrid.Distances = start.Distances;
-
-            colorGrid.ToImg().Save("colorized.png");
-            //Process.Start("colorized.png");
-            
-            Application.Run(new MazeForm());
+            mask = Mask.FromImageFile("maze_text.png");
+            grid = new MaskedGrid(mask);
+            RecursiveBacktracker.Maze(grid, 0);
+            img = grid.ToImg();
+            img.Save("masked2.png");
+            Process.Start("masked2.png");
         }
     }
 }

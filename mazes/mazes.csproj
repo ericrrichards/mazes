@@ -54,7 +54,7 @@
     <Compile Include="Algorithms\AldousBroder.cs" />
     <Compile Include="Algorithms\BinaryTree.cs" />
     <Compile Include="Algorithms\HuntAndKill.cs" />
-    <Compile Include="Algorithms\RecursvieBacktracker.cs" />
+    <Compile Include="Algorithms\RecursiveBacktracker.cs" />
     <Compile Include="Algorithms\Wilsons.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\ColoredGrid.cs" />
@@ -66,6 +66,8 @@
     <Compile Include="Algorithms\IMazeAlgorithm.cs" />
     <Compile Include="Core\IntExtensions.cs" />
     <Compile Include="Core\ListExtensions.cs" />
+    <Compile Include="Core\Mask.cs" />
+    <Compile Include="Core\MaskedGrid.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +86,11 @@
     <EmbeddedResource Include="UI\MazeForm.resx">
       <DependentUpon>MazeForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="maze_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

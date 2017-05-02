@@ -57,7 +57,13 @@ namespace mazes.UI {
             if (cbAlgorithm.SelectedItem != null) {
                 Image img = null;
                 var grid = new Grid(MazeSize, MazeSize);
-                if (!CreateSelectedMaze(grid)) return;
+                if (pbMask.Image != null) {
+                    var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
+                    grid = new MaskedGrid(mask);
+                }
+                if (!CreateSelectedMaze(grid)) {
+                    return;
+                }
                 img = grid.ToImg();
                 pbMaze.Image = img;
             }
@@ -120,6 +126,7 @@ namespace mazes.UI {
         private void btnColorize_Click(object sender, EventArgs e) {
             if (cbAlgorithm.SelectedItem != null) {
                 var colorGrid = new ColoredGrid(MazeSize, MazeSize);
+
                 if (!CreateSelectedMaze(colorGrid)) {
                     return;
                 }
@@ -201,6 +208,14 @@ namespace mazes.UI {
             btnStep.Enabled = false;
             Cursor = Cursors.Default;
             IsAnimating = false;
+        }
+
+        private void btnLoadMask_Click(object sender, EventArgs e) {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+                pbMask.Image = Image.FromFile(openFileDialog1.FileName);
+            } else {
+                pbMask.Image = null;
+            }
         }
     }
 }

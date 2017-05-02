@@ -4,15 +4,15 @@ using System.Linq;
 using mazes.Core;
 
 namespace mazes.Algorithms {
-    public class RecursvieBacktracker : IMazeAlgorithm {
+    public class RecursiveBacktracker : IMazeAlgorithm {
         public Cell CurrentCell { get; private set; }
         private readonly Grid _grid;
         private readonly Random _rand;
         private Stack<Cell> _stack;
 
 
-        public RecursvieBacktracker(Grid grid, int seed = -1) : this(grid, seed, null) { }
-        public RecursvieBacktracker(Grid grid, int seed = -1, Cell startAt = null) {
+        public RecursiveBacktracker(Grid grid, int seed = -1) : this(grid, seed, null) { }
+        public RecursiveBacktracker(Grid grid, int seed = -1, Cell startAt = null) {
             _grid = grid;
 
             _rand = seed >= 0 ? new Random(seed) : new Random();

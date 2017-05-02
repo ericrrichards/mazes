@@ -14,7 +14,7 @@ namespace mazes.Core {
         // Dimensions of the grid
         public int Rows { get; }
         public int Columns { get; }
-        public int Size => Rows * Columns;
+        public virtual int Size => Rows * Columns;
 
         // The actual grid
         private List<List<Cell>> _grid;
@@ -32,9 +32,10 @@ namespace mazes.Core {
                 }
                 return _grid[row][column];
             }
+            protected set => _grid[row][column] = value;
         }
         [NotNull]
-        public Cell RandomCell(Random random = null) {
+        public virtual Cell RandomCell(Random random = null) {
             
             var rand = random ?? new Random();
             var row = rand.Next(Rows);
@@ -132,11 +133,14 @@ namespace mazes.Core {
 
             var img = new Bitmap(width, height);
             using (var g = Graphics.FromImage(img)) {
-                g.Clear(Color.White);
+                g.Clear(Color.Transparent);
                 foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls, DrawMode.Path, }) {
 
 
                     foreach (var cell in Cells) {
+                        if (cell.Neighbors.Count == 0) {
+                            continue;
+                        }
                         var x1 = cell.Column * cellSize;
                         var y1 = cell.Row * cellSize;
                         var x2 = (cell.Column + 1) * cellSize;
@@ -182,7 +186,7 @@ namespace mazes.Core {
         }
 
         protected virtual Color? BackgroundColorFor(Cell cell) {
-            return null;
+            return Color.White;
         }
 
         private enum DrawMode {
