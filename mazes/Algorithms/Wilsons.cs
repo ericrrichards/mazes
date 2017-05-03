@@ -9,7 +9,7 @@ namespace mazes.Algorithms {
         private readonly Random _rand;
         private Cell _currentCell;
         public Cell CurrentCell => _currentCell;
-        private List<Cell> _unvisited;
+        private readonly List<Cell> _unvisited;
         private List<Cell> _path;
 
         public static Grid Maze(Grid grid, int seed = -1) {

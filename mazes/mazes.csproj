@@ -56,6 +56,7 @@
     <Compile Include="Algorithms\HuntAndKill.cs" />
     <Compile Include="Algorithms\RecursiveBacktracker.cs" />
     <Compile Include="Algorithms\Wilsons.cs" />
+    <Compile Include="Core\CartesianCell.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\ColoredGrid.cs" />
     <Compile Include="Core\ColoredPathGrid.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Core\MaskedColoredGrid.cs" />
     <Compile Include="Core\MaskedColoredPathGrid.cs" />
     <Compile Include="Core\MaskedGrid.cs" />
+    <Compile Include="Core\PolarCell.cs" />
+    <Compile Include="Core\PolarGrid.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>

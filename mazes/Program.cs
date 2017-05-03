@@ -14,6 +14,13 @@ namespace mazes {
         private static void Main(string[] args) {
             //MaskedMazes();
 
+            var grid = new PolarGrid(10,10);
+            RecursiveBacktracker.Maze(grid, 0);
+            var img = grid.ToImg();
+            img.Save("polarGrid.png");
+            Process.Start("polarGrid.png");
+            return;
+
             Application.Run(new MazeForm());
         }
 

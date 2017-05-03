@@ -14,7 +14,7 @@
 
         public static Grid Maze(Grid grid, int seed = -1) {
             var rand = seed >= 0 ? new Random(seed) : new Random();
-            foreach (var cell in grid.Cells) {
+            foreach (var cell in grid.Cells.Cast<CartesianCell>()) {
                 var neighbors = new[] { cell.North, cell.East }.Where(c => c != null).ToList();
                 if (!neighbors.Any()) {
                     continue;
@@ -35,7 +35,7 @@
         public bool Step() {
             var last = _currentCell.Current;
             _currentCell.MoveNext();
-            var cell = _currentCell.Current;
+            var cell = (CartesianCell)_currentCell.Current;
             if (cell != null) {
                 var neighbors = new[] { cell.North, cell.East }.Where(c => c != null).ToList();
                 if (neighbors.Any()) {

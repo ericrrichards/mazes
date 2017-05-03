@@ -1,6 +1,7 @@
 namespace mazes.Algorithms {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using mazes.Core;
 
@@ -16,7 +17,7 @@ namespace mazes.Algorithms {
             foreach (var row in grid.Row) {
                 var run = new List<Cell>();
 
-                foreach (var cell in row) {
+                foreach (var cell in row.Cast<CartesianCell>()) {
                     run.Add(cell);
 
                     var atEasternBoundary = cell.East == null;
@@ -25,7 +26,7 @@ namespace mazes.Algorithms {
                     var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && rand.Next(2) == 0);
 
                     if (shouldCloseOut) {
-                        var member = run.Sample(rand);
+                        var member = (CartesianCell)run.Sample(rand);
                         if (member.North != null) {
                             member.Link(member.North);
                         }
@@ -47,7 +48,7 @@ namespace mazes.Algorithms {
         public bool Step() {
             var last = _currentCell.Current;
             _currentCell.MoveNext();
-            var cell = _currentCell.Current;
+            var cell = (CartesianCell)_currentCell.Current;
             if (cell != null) {
                 if (cell.Column == 0) {
                     _run = new List<Cell>();
@@ -60,7 +61,7 @@ namespace mazes.Algorithms {
                 var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && _rand.Next(2) == 0);
 
                 if (shouldCloseOut) {
-                    var member = _run.Sample(_rand);
+                    var member = (CartesianCell)_run.Sample(_rand);
                     if (member.North != null) {
                         member.Link(member.North);
                     }

@@ -35,6 +35,7 @@ namespace mazes.UI {
 
             tsmiPickStart.Click += TsmiPickStartOnClick;
             tsmiPickEnd.Click += TsmiPickEndOnClick;
+            pbMask.Image = null;
         }
 
         private void TsmiPickEndOnClick(object sender, EventArgs eventArgs) {
@@ -83,7 +84,7 @@ namespace mazes.UI {
                 MessageBox.Show("No algorithm type for " + algo);
                 return false;
             }
-            if (pbMask.Image != null && type == typeof(Sidewinder) || type == typeof(BinaryTree)) {
+            if (pbMask.Image != null && (type == typeof(Sidewinder) || type == typeof(BinaryTree))) {
                 MessageBox.Show("Cannot use masks with Sidewinder and BinaryTree algorithms");
             }
 
@@ -117,7 +118,7 @@ namespace mazes.UI {
             if (type == null) {
                 MessageBox.Show("No algorithm type for " + algo);
             }
-            if (pbMask.Image != null && type == typeof(Sidewinder) || type == typeof(BinaryTree)) {
+            if (pbMask.Image != null && (type == typeof(Sidewinder) || type == typeof(BinaryTree))) {
                 MessageBox.Show("Cannot use masks with Sidewinder and BinaryTree algorithms");
             }
             _algorithm = (IMazeAlgorithm) Activator.CreateInstance(type, _grid, (int) nudRNGSeed.Value);
@@ -250,7 +251,9 @@ namespace mazes.UI {
                 pbMaze.SizeMode = PictureBoxSizeMode.Zoom;
                 pbMaze.Dock = DockStyle.Fill;
             } else {
-                pbMask.Image.Dispose();
+                if (pbMask.Image != null) {
+                    pbMask.Image.Dispose();
+                }
                 pbMask.Image = null;
                 pbMaze.SizeMode = PictureBoxSizeMode.AutoSize;
                 pbMaze.Dock = DockStyle.None;

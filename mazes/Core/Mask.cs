@@ -99,7 +99,7 @@
             } while (true);
         }
 
-        public static void UnlinkMaskedCells(Mask mask, IEnumerable<Cell> cells) {
+        public static void UnlinkMaskedCells(Mask mask, IEnumerable<CartesianCell> cells) {
             foreach (var cell in cells) {
                 var row = cell.Row;
                 var col = cell.Column;
@@ -107,16 +107,16 @@
                 if (!mask[row, col]) {
                     // Unlink this cell from its neighbors
                     if (cell.North != null)
-                        cell.North.South = null;
+                        ((CartesianCell)cell.North).South = null;
                     cell.North = null;
                     if (cell.South != null)
-                        cell.South.North = null;
+                        ((CartesianCell)cell.South).North = null;
                     cell.South = null;
                     if (cell.West != null)
-                        cell.West.East = null;
+                        ((CartesianCell)cell.West).East = null;
                     cell.West = null;
                     if (cell.East != null)
-                        cell.East.West = null;
+                        ((CartesianCell)cell.East).West = null;
                     cell.East = null;
                 }
             }

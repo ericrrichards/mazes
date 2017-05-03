@@ -20,7 +20,7 @@
             }
         }
 
-        protected override Color? BackgroundColorFor(Cell cell) {
+        protected override Color? BackgroundColorFor(CartesianCell cell) {
             if (Distances == null || Distances[cell] < 0) {
                 return null;
             }

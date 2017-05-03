@@ -17,7 +17,7 @@
         }
         public int PathLength => _maxDistance+1;
 
-        protected override void DrawPath(Cell cell, Graphics g, int cellSize) {
+        protected override void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
             if (Path == null) {
                 return;
             }

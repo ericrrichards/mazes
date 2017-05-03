@@ -4,9 +4,7 @@ namespace mazes.Core {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Runtime.Remoting.Channels;
     using System.Text;
-    using System.Xml;
 
     using JetBrains.Annotations;
 
@@ -17,7 +15,7 @@ namespace mazes.Core {
         public virtual int Size => Rows * Columns;
 
         // The actual grid
-        private List<List<Cell>> _grid;
+        protected List<List<Cell>> _grid;
 
         public Cell ActiveCell { get; set; }
 
@@ -32,7 +30,6 @@ namespace mazes.Core {
                 }
                 return _grid[row][column];
             }
-            protected set => _grid[row][column] = value;
         }
         [NotNull]
         public virtual Cell RandomCell(Random random = null) {
@@ -78,14 +75,14 @@ namespace mazes.Core {
             for (var r = 0; r < Rows; r++) {
                 var row = new List<Cell>();
                 for (var c = 0; c < Columns; c++) {
-                    row.Add(new Cell(r, c));
+                    row.Add(new CartesianCell(r, c));
                 }
                 _grid.Add(row);
             }
         }
 
         private void ConfigureCells() {
-            foreach (var cell in Cells) {
+            foreach (var cell in Cells.Cast<CartesianCell>()) {
                 var row = cell.Row;
                 var col = cell.Column;
 
@@ -106,7 +103,7 @@ namespace mazes.Core {
             foreach (var row in Row) {
                 var top = "|";
                 var bottom = "+";
-                foreach (var cell in row) {
+                foreach (var cell in row.Cast<CartesianCell>()) {
                     var body = $" {ContentsOf(cell)} ";
                     var east = cell.IsLinked(cell.East) ? " " : "|";
 
@@ -127,7 +124,7 @@ namespace mazes.Core {
             return " ";
         }
 
-        public Image ToImg(int cellSize = 50) {
+        public virtual Image ToImg(int cellSize = 50) {
             var width = cellSize * Columns;
             var height = cellSize * Rows;
 
@@ -137,7 +134,7 @@ namespace mazes.Core {
                 foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls, DrawMode.Path, }) {
 
 
-                    foreach (var cell in Cells) {
+                    foreach (var cell in Cells.Cast<CartesianCell>()) {
                         if (cell.Neighbors.Count == 0) {
                             continue;
                         }
@@ -181,11 +178,11 @@ namespace mazes.Core {
             return img;
         }
 
-        protected  virtual void DrawPath(Cell cell, Graphics g, int cellSize) {
+        protected  virtual void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
             
         }
 
-        protected virtual Color? BackgroundColorFor(Cell cell) {
+        protected virtual Color? BackgroundColorFor(CartesianCell cell) {
             return Color.White;
         }
 

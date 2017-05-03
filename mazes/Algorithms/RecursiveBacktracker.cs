@@ -12,7 +12,7 @@ namespace mazes.Algorithms {
 
 
         public RecursiveBacktracker(Grid grid, int seed = -1) : this(grid, seed, null) { }
-        public RecursiveBacktracker(Grid grid, int seed = -1, Cell startAt = null) {
+        public RecursiveBacktracker(Grid grid, int seed = -1, CartesianCell startAt = null) {
             _grid = grid;
 
             _rand = seed >= 0 ? new Random(seed) : new Random();

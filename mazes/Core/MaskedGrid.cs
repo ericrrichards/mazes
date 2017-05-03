@@ -1,13 +1,14 @@
 namespace mazes.Core {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class MaskedGrid : Grid {
         public Mask Mask { get; }
 
         public MaskedGrid(Mask mask) : base(mask.Rows, mask.Columns) {
             Mask = mask;
-            Mask.UnlinkMaskedCells(Mask, Cells);
+            Mask.UnlinkMaskedCells(Mask, Cells.Cast<CartesianCell>());
         }
 
         public override Cell RandomCell(Random random = null) {
