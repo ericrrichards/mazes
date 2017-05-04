@@ -3,7 +3,7 @@ namespace mazes.Core {
     using System.Drawing;
 
     public class ColoredPathPolarGrid : ColoredPolarGrid, IPathGrid {
-        public ColoredPathPolarGrid(int rows, int cols) : base(rows, cols) { }
+        public ColoredPathPolarGrid(int rows) : base(rows) { }
 
         private Distances _path;
         private Cell _end;

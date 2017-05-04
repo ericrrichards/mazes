@@ -8,7 +8,7 @@
     using JetBrains.Annotations;
 
     public class PolarGrid : Grid {
-        public PolarGrid(int rows, int cols) : base(rows, 1) {
+        public PolarGrid(int rows) : base(rows, 1) {
 
             PrepareGrid();
             ConfigureCells();
@@ -67,8 +67,7 @@
             }
             return randomCell;
         }
-        [CanBeNull]
-        public virtual Cell this[int row, int column] {
+        public override Cell this[int row, int column] {
             get {
                 if (row < 0 || row >= Rows) {
                     return null;

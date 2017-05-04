@@ -64,13 +64,15 @@ namespace mazes.UI {
 
         private void DrawMaze(object sender, EventArgs e) {
             if (cbAlgorithm.SelectedItem != null) {
-                Image img = null;
+                Image img;
                 var grid = new Grid(MazeSize, MazeSize);
                 if (pbMask.Image != null) {
                     var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                     grid = new MaskedGrid(mask);
                 } else if (_mode == MazeStyle.Polar) {
-                    grid = new PolarGrid(MazeSize, MazeSize);
+                    grid = new PolarGrid(MazeSize);
+                } else if (_mode == MazeStyle.Hex) {
+                    grid = new HexGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(grid)) {
                     return;
@@ -102,7 +104,9 @@ namespace mazes.UI {
                 var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                 _grid = new MaskedGrid(mask);
             } else if (_mode == MazeStyle.Polar) {
-                _grid = new PolarGrid(MazeSize, MazeSize);
+                _grid = new PolarGrid(MazeSize);
+            } else if (_mode == MazeStyle.Hex) {
+                _grid = new HexGrid(MazeSize, MazeSize);
             }
             pbMaze.Image = _grid.ToImg(GridSize);
             if (cbAlgorithm.SelectedItem != null) {
@@ -157,7 +161,9 @@ namespace mazes.UI {
                     var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                     colorGrid = new MaskedColoredGrid(mask);
                 } else if (_mode == MazeStyle.Polar) {
-                    colorGrid = new ColoredPolarGrid(MazeSize, MazeSize);
+                    colorGrid = new ColoredPolarGrid(MazeSize);
+                } else if (_mode == MazeStyle.Hex) {
+                    colorGrid = new ColoredHexGrid(MazeSize, MazeSize);
                 }
 
                 if (!CreateSelectedMaze(colorGrid)) {
@@ -170,8 +176,7 @@ namespace mazes.UI {
                     start = colorGrid.RandomCell();
                 } else if (_mode == MazeStyle.Polar) {
                     start = colorGrid[0, 0];
-                } 
-                else {
+                } else {
                     start = colorGrid[colorGrid.Rows / 2, colorGrid.Columns / 2];
                 }
                 colorGrid.Distances = start.Distances;
@@ -214,7 +219,9 @@ namespace mazes.UI {
                     var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                     colorGrid = new MaskedColoredPathGrid(mask);
                 } else if (_mode == MazeStyle.Polar) {
-                    colorGrid = new ColoredPathPolarGrid(MazeSize, MazeSize);
+                    colorGrid = new ColoredPathPolarGrid(MazeSize);
+                } else if (_mode == MazeStyle.Hex) {
+                    colorGrid = new ColoredPathHexGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(colorGrid)) {
                     return;
@@ -276,11 +283,15 @@ namespace mazes.UI {
                 _mode = MazeStyle.Square;
                 GridSize = 50;
                 ToggleDrawPathButton();
-                
+
             } else if (rbPolar.Checked) {
                 _mode = MazeStyle.Polar;
                 ClearMask();
                 GridSize = 25;
+            } else if (rbHex.Checked) {
+                _mode = MazeStyle.Hex;
+                GridSize = 50;
+                ClearMask();
             }
             ToggleEnableMaskButton();
             ResetMaze(sender, e);
@@ -313,6 +324,7 @@ namespace mazes.UI {
 
     public enum MazeStyle {
         Square,
-        Polar
+        Polar,
+        Hex
     }
 }

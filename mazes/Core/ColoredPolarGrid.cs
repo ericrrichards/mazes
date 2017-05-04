@@ -1,17 +1,16 @@
-﻿namespace mazes.Core {
+namespace mazes.Core {
     using System.Drawing;
 
-    public class ColoredGrid : Grid, IColoredGrid {
+    public class ColoredPolarGrid : PolarGrid, IColoredGrid {
         private Distances _distances;
         private Cell _farthest;
         private int _maximum;
 
-        public ColoredGrid(int rows, int cols) : base(rows, cols) {
-            BackColor = Color.Green;
-        }
-
         public Color BackColor { get; set; }
 
+        public ColoredPolarGrid(int rows) : base(rows) {
+            BackColor = Color.Green;
+        }
         public Distances Distances {
             get => _distances;
             set {

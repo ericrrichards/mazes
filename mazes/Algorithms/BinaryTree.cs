@@ -34,6 +34,8 @@
                     return new[] { cartesianCell.North, cartesianCell.East }.Where(c => c != null).ToList();
                 case PolarCell polarCell:
                     return new List<Cell>(new[] { polarCell.Inward, polarCell.Clockwise }.Where(c => c != null).ToList());
+                case HexCell hexCell: 
+                    return new List<Cell>(new []{hexCell.North, hexCell.Column %2==0 ? hexCell.SouthEast : hexCell.NorthEast}.Where(c => c != null).ToList());
             }
             return new List<Cell>();
         }

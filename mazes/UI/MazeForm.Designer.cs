@@ -25,6 +25,9 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbPolar = new System.Windows.Forms.RadioButton();
+            this.rbSquare = new System.Windows.Forms.RadioButton();
             this.pbMask = new System.Windows.Forms.PictureBox();
             this.btnLoadMask = new System.Windows.Forms.Button();
             this.btnAnimate = new System.Windows.Forms.Button();
@@ -52,20 +55,18 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbSquare = new System.Windows.Forms.RadioButton();
-            this.rbPolar = new System.Windows.Forms.RadioButton();
+            this.rbHex = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
             this.cmsPickStart.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -101,6 +102,42 @@
             this.splitContainer1.Size = new System.Drawing.Size(897, 706);
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbHex);
+            this.groupBox1.Controls.Add(this.rbPolar);
+            this.groupBox1.Controls.Add(this.rbSquare);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(171, 128);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Maze Style";
+            // 
+            // rbPolar
+            // 
+            this.rbPolar.AutoSize = true;
+            this.rbPolar.Location = new System.Drawing.Point(6, 42);
+            this.rbPolar.Name = "rbPolar";
+            this.rbPolar.Size = new System.Drawing.Size(49, 17);
+            this.rbPolar.TabIndex = 1;
+            this.rbPolar.Text = "Polar";
+            this.rbPolar.UseVisualStyleBackColor = true;
+            this.rbPolar.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            // 
+            // rbSquare
+            // 
+            this.rbSquare.AutoSize = true;
+            this.rbSquare.Checked = true;
+            this.rbSquare.Location = new System.Drawing.Point(6, 19);
+            this.rbSquare.Name = "rbSquare";
+            this.rbSquare.Size = new System.Drawing.Size(59, 17);
+            this.rbSquare.TabIndex = 0;
+            this.rbSquare.TabStop = true;
+            this.rbSquare.Text = "Square";
+            this.rbSquare.UseVisualStyleBackColor = true;
+            this.rbSquare.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // pbMask
             // 
@@ -338,40 +375,16 @@
             // 
             this.openFileDialog1.Filter = "Images|*.png";
             // 
-            // groupBox1
+            // rbHex
             // 
-            this.groupBox1.Controls.Add(this.rbPolar);
-            this.groupBox1.Controls.Add(this.rbSquare);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 128);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Maze Style";
-            // 
-            // rbSquare
-            // 
-            this.rbSquare.AutoSize = true;
-            this.rbSquare.Checked = true;
-            this.rbSquare.Location = new System.Drawing.Point(6, 19);
-            this.rbSquare.Name = "rbSquare";
-            this.rbSquare.Size = new System.Drawing.Size(59, 17);
-            this.rbSquare.TabIndex = 0;
-            this.rbSquare.TabStop = true;
-            this.rbSquare.Text = "Square";
-            this.rbSquare.UseVisualStyleBackColor = true;
-            this.rbSquare.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
-            // 
-            // rbPolar
-            // 
-            this.rbPolar.AutoSize = true;
-            this.rbPolar.Location = new System.Drawing.Point(6, 42);
-            this.rbPolar.Name = "rbPolar";
-            this.rbPolar.Size = new System.Drawing.Size(49, 17);
-            this.rbPolar.TabIndex = 1;
-            this.rbPolar.Text = "Polar";
-            this.rbPolar.UseVisualStyleBackColor = true;
-            this.rbPolar.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            this.rbHex.AutoSize = true;
+            this.rbHex.Location = new System.Drawing.Point(6, 65);
+            this.rbHex.Name = "rbHex";
+            this.rbHex.Size = new System.Drawing.Size(44, 17);
+            this.rbHex.TabIndex = 2;
+            this.rbHex.Text = "Hex";
+            this.rbHex.UseVisualStyleBackColor = true;
+            this.rbHex.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // MazeForm
             // 
@@ -389,6 +402,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMask)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).EndInit();
@@ -396,8 +411,6 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
             this.cmsPickStart.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -435,5 +448,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbPolar;
         private System.Windows.Forms.RadioButton rbSquare;
+        private System.Windows.Forms.RadioButton rbHex;
     }
 }

@@ -16,11 +16,65 @@ namespace mazes {
 
             //PolarMaze();
 
+            //ColorizeThetaMazes();
+
             Application.Run(new MazeForm());
         }
 
+        private static void ColorizeThetaMazes() {
+            var grid = new ColoredPolarGrid(100);
+            BinaryTree.Maze(grid);
+            var start = grid[0, 0];
+            grid.Distances = start.Distances;
+
+            var img = grid.ToImg(25);
+            img.Save("binaryTheta.png");
+
+            grid = new ColoredPolarGrid(100);
+            Sidewinder.Maze(grid);
+            start = grid[0, 0];
+            grid.Distances = start.Distances;
+            img = grid.ToImg(25);
+            img.Save("sidewinderTheta.png");
+
+            grid = new ColoredPolarGrid(100);
+            AldousBroder.Maze(grid);
+            start = grid[0, 0];
+            grid.Distances = start.Distances;
+            img = grid.ToImg(25);
+            img.Save("aldousBroderTheta.png");
+
+            grid = new ColoredPolarGrid(100);
+            HuntAndKill.Maze(grid);
+            start = grid[0, 0];
+            grid.Distances = start.Distances;
+            img = grid.ToImg(25);
+            img.Save("huntAndKillTheta.png");
+
+            grid = new ColoredPolarGrid(100);
+            RecursiveBacktracker.Maze(grid, startAt: null);
+            start = grid[0, 0];
+            grid.Distances = start.Distances;
+            img = grid.ToImg(25);
+            img.Save("recursiveBacktrackerTheta.png");
+
+            grid = new ColoredPolarGrid(100);
+            Wilsons.Maze(grid);
+            start = grid[0, 0];
+            grid.Distances = start.Distances;
+            img = grid.ToImg(25);
+            img.Save("wilsonsTheta.png");
+
+            Process.Start("binaryTheta.png");
+            Process.Start("sidewinderTheta.png");
+            Process.Start("aldousBroderTheta.png");
+            Process.Start("huntAndKillTheta.png");
+            Process.Start("recursiveBacktrackerTheta.png");
+            Process.Start("wilsonsTheta.png");
+        }
+
         private static void PolarMaze() {
-            var grid = new PolarGrid(10, 10);
+            var grid = new PolarGrid(10);
             RecursiveBacktracker.Maze(grid, 0);
             var img = grid.ToImg();
             img.Save("polarGrid.png");

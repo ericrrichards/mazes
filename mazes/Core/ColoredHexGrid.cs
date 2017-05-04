@@ -1,15 +1,14 @@
 ﻿namespace mazes.Core {
     using System.Drawing;
 
-    public class ColoredGrid : Grid, IColoredGrid {
+    public class ColoredHexGrid : HexGrid, IColoredGrid {
         private Distances _distances;
         private Cell _farthest;
         private int _maximum;
 
-        public ColoredGrid(int rows, int cols) : base(rows, cols) {
+        public ColoredHexGrid(int rows, int cols) : base(rows, cols) {
             BackColor = Color.Green;
         }
-
         public Color BackColor { get; set; }
 
         public Distances Distances {
@@ -19,7 +18,6 @@
                 (_farthest, _maximum) = value.Max;
             }
         }
-
         protected override Color? BackgroundColorFor(Cell cell) {
             if (Distances == null || Distances[cell] < 0) {
                 return null;

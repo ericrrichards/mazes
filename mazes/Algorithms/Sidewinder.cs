@@ -73,6 +73,8 @@ namespace mazes.Algorithms {
                     return cartesianCell.East;
                 case PolarCell polarCell:
                     return polarCell.Clockwise;
+                case HexCell hexCell:
+                    return hexCell.Column % 2 == 0 ? hexCell.SouthEast : hexCell.NorthEast;
             }
             return null;
         }
@@ -83,6 +85,8 @@ namespace mazes.Algorithms {
                     return cartesianCell.North;
                 case PolarCell polarCell:
                     return polarCell.Inward;
+                case HexCell hexCell:
+                    return hexCell.North;
             }
             return null;
         }
