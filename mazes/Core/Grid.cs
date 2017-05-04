@@ -8,7 +8,7 @@ namespace mazes.Core {
 
     using JetBrains.Annotations;
 
-    public class Grid {
+    public class Grid : IGrid {
         // Dimensions of the grid
         public int Rows { get; }
         public int Columns { get; }
@@ -33,7 +33,7 @@ namespace mazes.Core {
         }
         [NotNull]
         public virtual Cell RandomCell(Random random = null) {
-            
+
             var rand = random ?? new Random();
             var row = rand.Next(Rows);
             var col = rand.Next(Columns);
@@ -131,7 +131,7 @@ namespace mazes.Core {
             var img = new Bitmap(width, height);
             using (var g = Graphics.FromImage(img)) {
                 g.Clear(Color.Transparent);
-                foreach (var mode in new[]{DrawMode.Background, DrawMode.Walls, DrawMode.Path, }) {
+                foreach (var mode in new[] { DrawMode.Background, DrawMode.Walls, DrawMode.Path, }) {
 
 
                     foreach (var cell in Cells.Cast<CartesianCell>()) {
@@ -146,7 +146,7 @@ namespace mazes.Core {
                         if (mode == DrawMode.Background) {
                             var color = BackgroundColorFor(cell);
                             if (color != null) {
-                                g.FillRectangle(new SolidBrush(color.GetValueOrDefault()), x1, y1, cellSize, cellSize );
+                                g.FillRectangle(new SolidBrush(color.GetValueOrDefault()), x1, y1, cellSize, cellSize);
                             }
                         } else if (mode == DrawMode.Walls) {
                             if (cell.North == null) {
@@ -164,7 +164,7 @@ namespace mazes.Core {
                             }
 
                             if (cell == ActiveCell) {
-                                g.FillRectangle(Brushes.GreenYellow, x1+2, y1+2, cellSize-4, cellSize-4);
+                                g.FillRectangle(Brushes.GreenYellow, x1 + 2, y1 + 2, cellSize - 4, cellSize - 4);
                             }
 
                         } else if (mode == DrawMode.Path) {
@@ -178,20 +178,24 @@ namespace mazes.Core {
             return img;
         }
 
-        protected  virtual void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
-            
+        protected virtual void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
+
         }
 
-        protected virtual Color? BackgroundColorFor(CartesianCell cell) {
+        protected virtual Color? BackgroundColorFor(Cell cell) {
             return Color.White;
         }
 
-        private enum DrawMode {
-            Background, Walls,  Path
-        }
+
 
         public List<Cell> Deadends() {
             return Cells.Where(c => c.Links.Count == 1).ToList();
         }
+    }
+
+    public enum DrawMode {
+        Background,
+        Walls,
+        Path
     }
 }

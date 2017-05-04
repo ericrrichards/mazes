@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pbMask = new System.Windows.Forms.PictureBox();
+            this.btnLoadMask = new System.Windows.Forms.Button();
             this.btnAnimate = new System.Windows.Forms.Button();
             this.btnLongestPath = new System.Windows.Forms.Button();
             this.btnDrawPath = new System.Windows.Forms.Button();
@@ -49,19 +51,21 @@
             this.tsmiPickEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnLoadMask = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pbMask = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbSquare = new System.Windows.Forms.RadioButton();
+            this.rbPolar = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
             this.cmsPickStart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMask)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -72,6 +76,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.pbMask);
             this.splitContainer1.Panel1.Controls.Add(this.btnLoadMask);
             this.splitContainer1.Panel1.Controls.Add(this.btnAnimate);
@@ -93,13 +98,32 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.pbMaze);
-            this.splitContainer1.Size = new System.Drawing.Size(752, 581);
-            this.splitContainer1.SplitterDistance = 185;
+            this.splitContainer1.Size = new System.Drawing.Size(897, 706);
+            this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pbMask
+            // 
+            this.pbMask.Location = new System.Drawing.Point(12, 530);
+            this.pbMask.Name = "pbMask";
+            this.pbMask.Size = new System.Drawing.Size(120, 120);
+            this.pbMask.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMask.TabIndex = 14;
+            this.pbMask.TabStop = false;
+            // 
+            // btnLoadMask
+            // 
+            this.btnLoadMask.Location = new System.Drawing.Point(12, 501);
+            this.btnLoadMask.Name = "btnLoadMask";
+            this.btnLoadMask.Size = new System.Drawing.Size(120, 23);
+            this.btnLoadMask.TabIndex = 13;
+            this.btnLoadMask.Text = "Load Mask";
+            this.btnLoadMask.UseVisualStyleBackColor = true;
+            this.btnLoadMask.Click += new System.EventHandler(this.btnLoadMask_Click);
             // 
             // btnAnimate
             // 
-            this.btnAnimate.Location = new System.Drawing.Point(12, 151);
+            this.btnAnimate.Location = new System.Drawing.Point(12, 286);
             this.btnAnimate.Name = "btnAnimate";
             this.btnAnimate.Size = new System.Drawing.Size(120, 23);
             this.btnAnimate.TabIndex = 12;
@@ -109,7 +133,7 @@
             // 
             // btnLongestPath
             // 
-            this.btnLongestPath.Location = new System.Drawing.Point(12, 337);
+            this.btnLongestPath.Location = new System.Drawing.Point(12, 472);
             this.btnLongestPath.Name = "btnLongestPath";
             this.btnLongestPath.Size = new System.Drawing.Size(120, 23);
             this.btnLongestPath.TabIndex = 11;
@@ -119,7 +143,7 @@
             // 
             // btnDrawPath
             // 
-            this.btnDrawPath.Location = new System.Drawing.Point(12, 308);
+            this.btnDrawPath.Location = new System.Drawing.Point(12, 443);
             this.btnDrawPath.Name = "btnDrawPath";
             this.btnDrawPath.Size = new System.Drawing.Size(120, 23);
             this.btnDrawPath.TabIndex = 10;
@@ -129,7 +153,7 @@
             // 
             // btnColorize
             // 
-            this.btnColorize.Location = new System.Drawing.Point(12, 274);
+            this.btnColorize.Location = new System.Drawing.Point(12, 409);
             this.btnColorize.Name = "btnColorize";
             this.btnColorize.Size = new System.Drawing.Size(120, 28);
             this.btnColorize.TabIndex = 9;
@@ -139,7 +163,7 @@
             // 
             // btnPickColor
             // 
-            this.btnPickColor.Location = new System.Drawing.Point(47, 239);
+            this.btnPickColor.Location = new System.Drawing.Point(47, 374);
             this.btnPickColor.Name = "btnPickColor";
             this.btnPickColor.Size = new System.Drawing.Size(85, 28);
             this.btnPickColor.TabIndex = 8;
@@ -150,7 +174,7 @@
             // pbColor
             // 
             this.pbColor.BackColor = System.Drawing.Color.Red;
-            this.pbColor.Location = new System.Drawing.Point(12, 239);
+            this.pbColor.Location = new System.Drawing.Point(12, 374);
             this.pbColor.Name = "pbColor";
             this.pbColor.Size = new System.Drawing.Size(29, 28);
             this.pbColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -160,7 +184,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 209);
+            this.btnSave.Location = new System.Drawing.Point(12, 344);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 23);
             this.btnSave.TabIndex = 6;
@@ -172,7 +196,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(13, 9);
+            this.label2.Location = new System.Drawing.Point(13, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 5;
@@ -180,7 +204,7 @@
             // 
             // nudRNGSeed
             // 
-            this.nudRNGSeed.Location = new System.Drawing.Point(13, 25);
+            this.nudRNGSeed.Location = new System.Drawing.Point(13, 160);
             this.nudRNGSeed.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -192,7 +216,7 @@
             // 
             // btnDraw
             // 
-            this.btnDraw.Location = new System.Drawing.Point(12, 180);
+            this.btnDraw.Location = new System.Drawing.Point(12, 315);
             this.btnDraw.Name = "btnDraw";
             this.btnDraw.Size = new System.Drawing.Size(120, 23);
             this.btnDraw.TabIndex = 1;
@@ -202,7 +226,7 @@
             // 
             // btnStep
             // 
-            this.btnStep.Location = new System.Drawing.Point(13, 122);
+            this.btnStep.Location = new System.Drawing.Point(13, 257);
             this.btnStep.Name = "btnStep";
             this.btnStep.Size = new System.Drawing.Size(120, 23);
             this.btnStep.TabIndex = 3;
@@ -212,7 +236,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 91);
+            this.btnReset.Location = new System.Drawing.Point(12, 226);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(120, 23);
             this.btnReset.TabIndex = 2;
@@ -224,7 +248,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(13, 48);
+            this.label1.Location = new System.Drawing.Point(13, 183);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 1;
@@ -233,7 +257,7 @@
             // cbAlgorithm
             // 
             this.cbAlgorithm.FormattingEnabled = true;
-            this.cbAlgorithm.Location = new System.Drawing.Point(13, 64);
+            this.cbAlgorithm.Location = new System.Drawing.Point(13, 199);
             this.cbAlgorithm.Name = "cbAlgorithm";
             this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
             this.cbAlgorithm.TabIndex = 0;
@@ -245,9 +269,9 @@
             this.tsslStartPoint,
             this.tsslEndPoint,
             this.tsslPathLength});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 684);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(563, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(673, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -310,34 +334,50 @@
             // 
             this.colorDialog1.SolidColorOnly = true;
             // 
-            // btnLoadMask
-            // 
-            this.btnLoadMask.Location = new System.Drawing.Point(12, 366);
-            this.btnLoadMask.Name = "btnLoadMask";
-            this.btnLoadMask.Size = new System.Drawing.Size(120, 23);
-            this.btnLoadMask.TabIndex = 13;
-            this.btnLoadMask.Text = "Load Mask";
-            this.btnLoadMask.UseVisualStyleBackColor = true;
-            this.btnLoadMask.Click += new System.EventHandler(this.btnLoadMask_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Images|*.png";
             // 
-            // pbMask
+            // groupBox1
             // 
-            this.pbMask.Location = new System.Drawing.Point(12, 395);
-            this.pbMask.Name = "pbMask";
-            this.pbMask.Size = new System.Drawing.Size(120, 120);
-            this.pbMask.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMask.TabIndex = 14;
-            this.pbMask.TabStop = false;
+            this.groupBox1.Controls.Add(this.rbPolar);
+            this.groupBox1.Controls.Add(this.rbSquare);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(171, 128);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Maze Style";
+            // 
+            // rbSquare
+            // 
+            this.rbSquare.AutoSize = true;
+            this.rbSquare.Checked = true;
+            this.rbSquare.Location = new System.Drawing.Point(6, 19);
+            this.rbSquare.Name = "rbSquare";
+            this.rbSquare.Size = new System.Drawing.Size(59, 17);
+            this.rbSquare.TabIndex = 0;
+            this.rbSquare.TabStop = true;
+            this.rbSquare.Text = "Square";
+            this.rbSquare.UseVisualStyleBackColor = true;
+            this.rbSquare.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            // 
+            // rbPolar
+            // 
+            this.rbPolar.AutoSize = true;
+            this.rbPolar.Location = new System.Drawing.Point(6, 42);
+            this.rbPolar.Name = "rbPolar";
+            this.rbPolar.Size = new System.Drawing.Size(49, 17);
+            this.rbPolar.TabIndex = 1;
+            this.rbPolar.Text = "Polar";
+            this.rbPolar.UseVisualStyleBackColor = true;
+            this.rbPolar.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // MazeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 581);
+            this.ClientSize = new System.Drawing.Size(897, 706);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "MazeForm";
@@ -349,13 +389,15 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMask)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRNGSeed)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
             this.cmsPickStart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMask)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +432,8 @@
         private System.Windows.Forms.PictureBox pbMask;
         private System.Windows.Forms.Button btnLoadMask;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbPolar;
+        private System.Windows.Forms.RadioButton rbSquare;
     }
 }

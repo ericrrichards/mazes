@@ -11,7 +11,7 @@ namespace mazes.UI {
     using Core;
 
     public partial class MazeForm : Form {
-        private const int GridSize = 25;
+        private int GridSize = 50;
         private const int MazeSize = 11;
         private Grid _grid;
         private IMazeAlgorithm _algorithm;
@@ -20,6 +20,7 @@ namespace mazes.UI {
         private Point? _endPoint;
 
         private bool IsAnimating;
+        private MazeStyle _mode;
 
         public MazeForm() {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace mazes.UI {
             tsmiPickStart.Click += TsmiPickStartOnClick;
             tsmiPickEnd.Click += TsmiPickEndOnClick;
             pbMask.Image = null;
+            
         }
 
         private void TsmiPickEndOnClick(object sender, EventArgs eventArgs) {
@@ -67,6 +69,8 @@ namespace mazes.UI {
                 if (pbMask.Image != null) {
                     var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                     grid = new MaskedGrid(mask);
+                } else if (_mode == MazeStyle.Polar) {
+                    grid = new PolarGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(grid)) {
                     return;
@@ -76,7 +80,7 @@ namespace mazes.UI {
             }
         }
 
-        private bool CreateSelectedMaze(Grid grid) {
+        private bool CreateSelectedMaze(IGrid grid) {
             var algo = (string) cbAlgorithm.SelectedItem;
 
             var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name == algo);
@@ -97,6 +101,8 @@ namespace mazes.UI {
             if (pbMask.Image != null) {
                 var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                 _grid = new MaskedGrid(mask);
+            } else if (_mode == MazeStyle.Polar) {
+                _grid = new PolarGrid(MazeSize, MazeSize);
             }
             pbMaze.Image = _grid.ToImg(GridSize);
             if (cbAlgorithm.SelectedItem != null) {
@@ -146,10 +152,12 @@ namespace mazes.UI {
 
         private void btnColorize_Click(object sender, EventArgs e) {
             if (cbAlgorithm.SelectedItem != null) {
-                var colorGrid = new ColoredGrid(MazeSize, MazeSize);
+                IColoredGrid colorGrid = new ColoredGrid(MazeSize, MazeSize);
                 if (pbMask.Image != null) {
                     var mask = Mask.FromBitmap((Bitmap)pbMask.Image);
                     colorGrid = new MaskedColoredGrid(mask);
+                } else if (_mode == MazeStyle.Polar) {
+                    colorGrid = new ColoredPolarGrid(MazeSize, MazeSize);
                 }
 
                 if (!CreateSelectedMaze(colorGrid)) {
@@ -251,14 +259,34 @@ namespace mazes.UI {
                 pbMaze.SizeMode = PictureBoxSizeMode.Zoom;
                 pbMaze.Dock = DockStyle.Fill;
             } else {
-                if (pbMask.Image != null) {
-                    pbMask.Image.Dispose();
-                }
-                pbMask.Image = null;
-                pbMaze.SizeMode = PictureBoxSizeMode.AutoSize;
-                pbMaze.Dock = DockStyle.None;
+                ClearMask();
             }
             ResetMaze(sender, e);
         }
+        
+
+        private void rbSquare_CheckedChanged(object sender, EventArgs e) {
+            if (rbSquare.Checked) {
+                _mode = MazeStyle.Square;
+                GridSize = 50;
+            } else if (rbPolar.Checked) {
+                _mode = MazeStyle.Polar;
+                ClearMask();
+                GridSize = 25;
+            }
+            ResetMaze(sender, e);
+        }
+
+        private void ClearMask() {
+            pbMask.Image?.Dispose();
+            pbMask.Image = null;
+            pbMaze.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbMaze.Dock = DockStyle.None;
+        }
+    }
+
+    public enum MazeStyle {
+        Square,
+        Polar
     }
 }

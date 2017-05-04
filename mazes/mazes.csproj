@@ -65,6 +65,8 @@
     <Compile Include="Core\Distances.cs" />
     <Compile Include="Core\Grid.cs" />
     <Compile Include="Algorithms\IMazeAlgorithm.cs" />
+    <Compile Include="Core\IColoredGrid.cs" />
+    <Compile Include="Core\IGrid.cs" />
     <Compile Include="Core\IntExtensions.cs" />
     <Compile Include="Core\ListExtensions.cs" />
     <Compile Include="Core\Mask.cs" />
