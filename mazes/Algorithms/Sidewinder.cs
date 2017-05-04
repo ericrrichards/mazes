@@ -20,8 +20,8 @@ namespace mazes.Algorithms {
                 foreach (var cell in row) {
                     run.Add(cell);
 
-                    var atEasternBoundary = AtEasternBoundary(cell);
-                    var atNorthernBoundary = AtNorthernBoundary(cell);
+                    var atEasternBoundary = NextCell(cell)==null;
+                    var atNorthernBoundary = CloseOutCell(cell)==null;
 
                     var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && rand.Next(2) == 0);
 
@@ -49,8 +49,8 @@ namespace mazes.Algorithms {
                 }
                 _run.Add(cell);
 
-                var atEasternBoundary = AtEasternBoundary(cell);
-                var atNorthernBoundary = AtNorthernBoundary(cell);
+                var atEasternBoundary = NextCell(cell)==null;
+                var atNorthernBoundary = CloseOutCell(cell)== null;
 
                 var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && _rand.Next(2) == 0);
 
@@ -85,26 +85,6 @@ namespace mazes.Algorithms {
                     return polarCell.Inward;
             }
             return null;
-        }
-
-        private static bool AtNorthernBoundary(Cell cell) {
-            switch (cell) {
-                case CartesianCell cartesianCell:
-                    return cartesianCell.North == null;
-                case PolarCell polarCell:
-                    return polarCell.Inward == null;
-            }
-            return false;
-        }
-
-        private static bool AtEasternBoundary(Cell cell) {
-            switch (cell) {
-                case CartesianCell cartesianCell:
-                    return cartesianCell.East == null;
-                case PolarCell polarCell:
-                    return polarCell.Clockwise == null;
-            }
-            return false;
         }
 
         public Sidewinder(Grid grid, int seed=-1) {
