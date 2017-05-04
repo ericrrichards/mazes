@@ -10,6 +10,38 @@
             ConfigureCells();
         }
 
+        private static int CalculateNumberOfColumns(int rows) {
+            if (rows % 2 == 1) {
+                return rows * 2 - 1;
+            }
+            return rows * 2;
+        }
+
+        public TriangleGrid(int rows) :base(rows,CalculateNumberOfColumns(rows)) {
+            PrepareTriGrid();
+            ConfigureCells();
+        }
+
+        private void PrepareTriGrid() {
+            var rows = new List<List<Cell>>();
+            var startIndex = Rows % 2 == 1 ? 0 : 1;
+
+            for (var row = Rows-1; row >= 0; row--) {
+                var newRows = new List<Cell>();
+                for (var column = 0; column < Columns; column++) {
+                    if (column < startIndex || column > Columns-startIndex-1) {
+                        newRows.Add(null);
+                    } else {
+                        newRows.Add(new TriangleCell(row, column));
+                    }
+                }
+                rows.Add(newRows);
+                startIndex++;
+            }
+            rows.Reverse();
+            _grid = rows;
+        }
+
         private void PrepareGrid() {
             var rows = new List<List<Cell>>();
             for (var row = 0; row < Rows; row++) {
@@ -99,6 +131,17 @@
 
             return img;
 
+        }
+
+        public override Cell RandomCell(Random random = null) {
+            Cell cell;
+            do {
+                var rand = random ?? new Random();
+                var row = rand.Next(Rows);
+                var col = rand.Next(Columns);
+                cell = this[row, col];
+            } while (cell == null);
+            return cell;
         }
     }
 }

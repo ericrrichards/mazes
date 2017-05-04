@@ -18,7 +18,17 @@ namespace mazes {
 
             //ColorizeThetaMazes();
 
+            //MakeTriangleDeltaMaze();
+
             Application.Run(new MazeForm());
+        }
+
+        private static void MakeTriangleDeltaMaze() {
+            var grid = new TriangleGrid(11);
+            RecursiveBacktracker.Maze(grid, startAt: null);
+            var img = grid.ToImg();
+            img.Save("triGrid.png");
+            Process.Start("triGrid.png");
         }
 
         private static void ColorizeThetaMazes() {

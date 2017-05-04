@@ -56,7 +56,9 @@ namespace mazes.Core {
             get {
                 foreach (var row in Row) {
                     foreach (var cell in row) {
-                        yield return cell;
+                        if (cell != null) {
+                            yield return cell;
+                        }
                     }
                 }
             }
