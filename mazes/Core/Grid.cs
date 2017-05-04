@@ -178,7 +178,7 @@ namespace mazes.Core {
             return img;
         }
 
-        protected virtual void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
+        protected virtual void DrawPath(Cell cell, Graphics g, int cellSize) {
 
         }
 

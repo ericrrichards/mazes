@@ -1,7 +1,7 @@
 ﻿namespace mazes.Core {
     using System.Drawing;
 
-    public class ColoredPathGrid : ColoredGrid{
+    public class ColoredPathGrid : ColoredGrid, IPathGrid {
         public ColoredPathGrid(int rows, int cols) : base(rows, cols) { }
 
         private Distances _path;
@@ -17,10 +17,14 @@
         }
         public int PathLength => _maxDistance+1;
 
-        protected override void DrawPath(CartesianCell cell, Graphics g, int cellSize) {
+        protected override void DrawPath(Cell cell, Graphics g, int cellSize) {
             if (Path == null) {
                 return;
             }
+            DrawPathInternal((CartesianCell)cell, g, cellSize);
+        }
+
+        private void DrawPathInternal(CartesianCell cell, Graphics g, int cellSize) {
             var thisDistance = Path[cell];
             if (thisDistance >= 0) {
                 var x1 = cell.Column * cellSize;
@@ -44,11 +48,11 @@
                     }
 
                     if (thisDistance == 0) {
-                        g.DrawRectangle(pen, cx-2, cy-2, 4, 4);
+                        g.DrawRectangle(pen, cx - 2, cy - 2, 4, 4);
                     }
                     if (thisDistance == _maxDistance) {
-                        g.DrawLine(pen, cx-4, cy-4, cx+4, cy+4);
-                        g.DrawLine(pen, cx+4, cy-4, cx-4, cy+4);
+                        g.DrawLine(pen, cx - 4, cy - 4, cx + 4, cy + 4);
+                        g.DrawLine(pen, cx + 4, cy - 4, cx - 4, cy + 4);
                     }
                 }
             }

@@ -41,11 +41,11 @@
                 var row = cell.Row;
                 var col = cell.Column;
                 if (row > 0) {
-                    pCell.Clockwise = this[row, col + 1];
-                    pCell.CounterClockwise = this[row, col - 1];
+                    pCell.Clockwise = (PolarCell)this[row, col + 1];
+                    pCell.CounterClockwise = (PolarCell)this[row, col - 1];
                     var ratio = _grid[row].Count / _grid[row - 1].Count;
                     var parent = (PolarCell)_grid[row - 1][col / ratio];
-                    parent.Outward.Add(cell);
+                    parent.Outward.Add((PolarCell)cell);
                     pCell.Inward = parent;
                 }
             }
@@ -158,6 +158,8 @@
                                     }
                                 }
                             }
+                        } else if (mode == DrawMode.Path) {
+                            DrawPath(cell, g, cellSize);
                         }
                     }
                     g.DrawEllipse(Pens.Black, center - Rows * cellSize, center - Rows * cellSize, Rows * cellSize * 2, Rows * cellSize * 2);

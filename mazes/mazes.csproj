@@ -60,6 +60,7 @@
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\ColoredGrid.cs" />
     <Compile Include="Core\ColoredPathGrid.cs" />
+    <Compile Include="Core\ColoredPathPolarGrid.cs" />
     <Compile Include="Core\ColorExtensions.cs" />
     <Compile Include="Core\DistanceGrid.cs" />
     <Compile Include="Core\Distances.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Core\IColoredGrid.cs" />
     <Compile Include="Core\IGrid.cs" />
     <Compile Include="Core\IntExtensions.cs" />
+    <Compile Include="Core\IPathGrid.cs" />
     <Compile Include="Core\ListExtensions.cs" />
     <Compile Include="Core\Mask.cs" />
     <Compile Include="Core\MaskedColoredGrid.cs" />
