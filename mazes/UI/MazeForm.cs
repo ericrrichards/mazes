@@ -168,8 +168,12 @@ namespace mazes.UI {
                     start = colorGrid[_startPoint.Value.Y, _startPoint.Value.X];
                 else if (colorGrid is MaskedColoredGrid) {
                     start = colorGrid.RandomCell();
-                } else
+                } else if (_mode == MazeStyle.Polar) {
+                    start = colorGrid[0, 0];
+                } 
+                else {
                     start = colorGrid[colorGrid.Rows / 2, colorGrid.Columns / 2];
+                }
                 colorGrid.Distances = start.Distances;
 
                 colorGrid.BackColor = pbColor.BackColor;
