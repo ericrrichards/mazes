@@ -34,8 +34,18 @@
                     return new Cell[] { cartesianCell.North, cartesianCell.East }.Where(c => c != null).ToList();
                 case PolarCell polarCell:
                     return new Cell[] { polarCell.Inward, polarCell.Clockwise }.Where(c => c != null).ToList();
-                case HexCell hexCell: 
-                    return new Cell[]{hexCell.North, hexCell.Column %2==0 ? hexCell.SouthEast : hexCell.NorthEast}.Where(c => c != null).ToList();
+                case HexCell hexCell:
+                    return new Cell[] { hexCell.North, hexCell.Column % 2 == 0 ? hexCell.SouthEast : hexCell.NorthEast }.Where(c => c != null).ToList();
+                case TriangleCell triCell:
+                    if (triCell.East == null && triCell.North == null) {
+                        return new List<Cell>{triCell.West};
+                    }
+                    if (triCell.East != null && triCell.East.East == null && triCell.East.North == null && triCell.North != null) {
+                        return new List<Cell>{triCell.North};
+                    }
+                    return new List<Cell> { triCell.North, triCell.East }.Where(c => c != null).ToList();
+
+
             }
             return new List<Cell>();
         }

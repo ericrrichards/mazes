@@ -26,7 +26,7 @@ namespace mazes.Algorithms {
                     var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && rand.Next(2) == 0);
 
                     if (shouldCloseOut) {
-                        var member = run.Sample(rand);
+                        var member = SampleRun(run, rand);
                         if (CloseOutCell(member) != null) {
                             member.Link(CloseOutCell(member));
                         }
@@ -37,6 +37,16 @@ namespace mazes.Algorithms {
                 }
             }
             return grid;
+        }
+
+        private static Cell SampleRun(List<Cell> run, Random rand) {
+            if (run.First() is TriangleCell ) {
+                var filtered = run.Where(c => ((TriangleCell)c).North != null).ToList();
+                if (filtered.Count > 0) {
+                    return filtered.Sample(rand);
+                }
+            }
+            return run.Sample(rand);
         }
 
         public bool Step() {
@@ -55,7 +65,7 @@ namespace mazes.Algorithms {
                 var shouldCloseOut = atEasternBoundary || (!atNorthernBoundary && _rand.Next(2) == 0);
 
                 if (shouldCloseOut) {
-                    var member = _run.Sample(_rand);
+                    var member = SampleRun(_run, _rand);
                     if (CloseOutCell(member) != null) {
                         member.Link(CloseOutCell(member));
                     }
@@ -75,6 +85,8 @@ namespace mazes.Algorithms {
                     return polarCell.Clockwise;
                 case HexCell hexCell:
                     return hexCell.Column % 2 == 0 ? hexCell.SouthEast : hexCell.NorthEast;
+                case TriangleCell triCell:
+                    return triCell.East;
             }
             return null;
         }
@@ -87,6 +99,8 @@ namespace mazes.Algorithms {
                     return polarCell.Inward;
                 case HexCell hexCell:
                     return hexCell.North;
+                case TriangleCell triCell:
+                    return triCell.Row == 0 ? triCell.North : triCell.North??triCell.West;
             }
             return null;
         }

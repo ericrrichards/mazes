@@ -72,7 +72,9 @@ namespace mazes.UI {
                 } else if (_mode == MazeStyle.Polar) {
                     grid = new PolarGrid(MazeSize);
                 } else if (_mode == MazeStyle.Hex) {
-                    grid = new HexGrid(MazeSize, MazeSize);
+                    grid = new HexGrid(MazeSize, MazeSize * 3 / 2);
+                } else if (_mode == MazeStyle.Triangle) {
+                    grid = new TriangleGrid(MazeSize, MazeSize*2);
                 }
                 if (!CreateSelectedMaze(grid)) {
                     return;
@@ -106,7 +108,9 @@ namespace mazes.UI {
             } else if (_mode == MazeStyle.Polar) {
                 _grid = new PolarGrid(MazeSize);
             } else if (_mode == MazeStyle.Hex) {
-                _grid = new HexGrid(MazeSize, MazeSize);
+                _grid = new HexGrid(MazeSize, MazeSize * 3 / 2);
+            } else if (_mode == MazeStyle.Triangle) {
+                _grid = new TriangleGrid(MazeSize, MazeSize*2);
             }
             pbMaze.Image = _grid.ToImg(GridSize);
             if (cbAlgorithm.SelectedItem != null) {
@@ -163,7 +167,9 @@ namespace mazes.UI {
                 } else if (_mode == MazeStyle.Polar) {
                     colorGrid = new ColoredPolarGrid(MazeSize);
                 } else if (_mode == MazeStyle.Hex) {
-                    colorGrid = new ColoredHexGrid(MazeSize, MazeSize);
+                    colorGrid = new ColoredHexGrid(MazeSize, MazeSize * 3 / 2);
+                } else if (_mode == MazeStyle.Triangle) {
+                    colorGrid = new ColoredTriangleGrid(MazeSize, MazeSize*2);
                 }
 
                 if (!CreateSelectedMaze(colorGrid)) {
@@ -221,7 +227,9 @@ namespace mazes.UI {
                 } else if (_mode == MazeStyle.Polar) {
                     colorGrid = new ColoredPathPolarGrid(MazeSize);
                 } else if (_mode == MazeStyle.Hex) {
-                    colorGrid = new ColoredPathHexGrid(MazeSize, MazeSize);
+                    colorGrid = new ColoredPathHexGrid(MazeSize, MazeSize*3/2);
+                } else if (_mode == MazeStyle.Triangle) {
+                    colorGrid = new ColoredPathTriangleGrid(MazeSize, MazeSize*2);
                 }
                 if (!CreateSelectedMaze(colorGrid)) {
                     return;
@@ -292,6 +300,11 @@ namespace mazes.UI {
                 _mode = MazeStyle.Hex;
                 GridSize = 50;
                 ClearMask();
+            } else if (rbTriangle.Checked) {
+                _mode = MazeStyle.Triangle;
+                GridSize = 50;
+                ClearMask();
+
             }
             ToggleEnableMaskButton();
             ResetMaze(sender, e);
@@ -325,6 +338,7 @@ namespace mazes.UI {
     public enum MazeStyle {
         Square,
         Polar,
-        Hex
+        Hex,
+        Triangle
     }
 }

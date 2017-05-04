@@ -63,7 +63,9 @@
     <Compile Include="Core\ColoredPathGrid.cs" />
     <Compile Include="Core\ColoredPathHexGrid.cs" />
     <Compile Include="Core\ColoredPathPolarGrid.cs" />
+    <Compile Include="Core\ColoredPathTriangleGrid.cs" />
     <Compile Include="Core\ColoredPolarGrid.cs" />
+    <Compile Include="Core\ColoredTriangleGrid.cs" />
     <Compile Include="Core\ColorExtensions.cs" />
     <Compile Include="Core\DistanceGrid.cs" />
     <Compile Include="Core\Distances.cs" />
@@ -82,6 +84,8 @@
     <Compile Include="Core\MaskedGrid.cs" />
     <Compile Include="Core\PolarCell.cs" />
     <Compile Include="Core\PolarGrid.cs" />
+    <Compile Include="Core\TriangleCell.cs" />
+    <Compile Include="Core\TriangleGrid.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>

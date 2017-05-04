@@ -26,6 +26,7 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbHex = new System.Windows.Forms.RadioButton();
             this.rbPolar = new System.Windows.Forms.RadioButton();
             this.rbSquare = new System.Windows.Forms.RadioButton();
             this.pbMask = new System.Windows.Forms.PictureBox();
@@ -55,7 +56,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.rbHex = new System.Windows.Forms.RadioButton();
+            this.rbTriangle = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rbTriangle);
             this.groupBox1.Controls.Add(this.rbHex);
             this.groupBox1.Controls.Add(this.rbPolar);
             this.groupBox1.Controls.Add(this.rbSquare);
@@ -114,6 +116,17 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maze Style";
+            // 
+            // rbHex
+            // 
+            this.rbHex.AutoSize = true;
+            this.rbHex.Location = new System.Drawing.Point(6, 65);
+            this.rbHex.Name = "rbHex";
+            this.rbHex.Size = new System.Drawing.Size(44, 17);
+            this.rbHex.TabIndex = 2;
+            this.rbHex.Text = "Hex";
+            this.rbHex.UseVisualStyleBackColor = true;
+            this.rbHex.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // rbPolar
             // 
@@ -375,16 +388,16 @@
             // 
             this.openFileDialog1.Filter = "Images|*.png";
             // 
-            // rbHex
+            // rbTriangle
             // 
-            this.rbHex.AutoSize = true;
-            this.rbHex.Location = new System.Drawing.Point(6, 65);
-            this.rbHex.Name = "rbHex";
-            this.rbHex.Size = new System.Drawing.Size(44, 17);
-            this.rbHex.TabIndex = 2;
-            this.rbHex.Text = "Hex";
-            this.rbHex.UseVisualStyleBackColor = true;
-            this.rbHex.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            this.rbTriangle.AutoSize = true;
+            this.rbTriangle.Location = new System.Drawing.Point(6, 88);
+            this.rbTriangle.Name = "rbTriangle";
+            this.rbTriangle.Size = new System.Drawing.Size(63, 17);
+            this.rbTriangle.TabIndex = 3;
+            this.rbTriangle.Text = "Triangle";
+            this.rbTriangle.UseVisualStyleBackColor = true;
+            this.rbTriangle.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // MazeForm
             // 
@@ -449,5 +462,6 @@
         private System.Windows.Forms.RadioButton rbPolar;
         private System.Windows.Forms.RadioButton rbSquare;
         private System.Windows.Forms.RadioButton rbHex;
+        private System.Windows.Forms.RadioButton rbTriangle;
     }
 }
