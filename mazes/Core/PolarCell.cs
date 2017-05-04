@@ -1,6 +1,7 @@
 ﻿namespace mazes.Core {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Linq;
 
@@ -33,7 +34,7 @@
             }
         }
 
-        public GraphicsPath GetBounds(int center, double theta, int cellSize) {
+        public Point Center(int center, double theta, int cellSize) {
             var innerRadius = Row * cellSize;
             var outerRadius = (Row + 1) * cellSize;
             var thetaCCW = Column * theta;
@@ -52,20 +53,23 @@
             var thetaCWDegrees = (float)(thetaCW * 180 / Math.PI);
             var sweep = (float)(theta * 180 / Math.PI);
 
-            var path = new GraphicsPath();
-            if (Inward == null) {
-                path.AddEllipse(center - outerRadius, center - outerRadius, outerRadius * 2, outerRadius * 2);
-            } else {
-                path.AddLine(cx, cy, dx, dy);
-                //path.AddLine(dx, dy, bx, by);
-                path.AddArc(center - outerRadius, center - outerRadius, outerRadius * 2, outerRadius * 2, thetaCWDegrees, -sweep);
-                path.AddLine(ax, ay, bx, by);
-                //path.AddLine(ax, ay, cx, cy);
-                path.AddArc(center - innerRadius, center - innerRadius, innerRadius * 2, innerRadius * 2, thetaCCWDegrees, sweep);
+            using (var path = new GraphicsPath()) {
+                if (Inward == null) {
+                    path.AddEllipse(center - outerRadius, center - outerRadius, outerRadius * 2, outerRadius * 2);
+                } else {
+                    path.AddLine(cx, cy, dx, dy);
+                    //path.AddLine(dx, dy, bx, by);
+                    path.AddArc(center - outerRadius, center - outerRadius, outerRadius * 2, outerRadius * 2, thetaCWDegrees, -sweep);
+                    path.AddLine(ax, ay, bx, by);
+                    //path.AddLine(ax, ay, cx, cy);
+                    path.AddArc(center - innerRadius, center - innerRadius, innerRadius * 2, innerRadius * 2, thetaCCWDegrees, sweep);
 
-                path.CloseFigure();
+                    path.CloseFigure();
+                }
+                var bounds = path.GetBounds();
+
+                return new Point((int)(bounds.Left + bounds.Width / 2), (int)(bounds.Top + bounds.Height / 2));
             }
-            return path;
         }
     }
 }

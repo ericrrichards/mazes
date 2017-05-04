@@ -1,34 +1,41 @@
 ﻿namespace mazes.Core {
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
 
     using JetBrains.Annotations;
 
     public class CartesianCell : Cell {
-        
+
 
         // Neighboring cells
         [CanBeNull]
-        public Cell North { get; set; }
+        public CartesianCell North { get; set; }
         [CanBeNull]
-        public Cell South { get; set; }
+        public CartesianCell South { get; set; }
         [CanBeNull]
-        public Cell East { get; set; }
+        public CartesianCell East { get; set; }
         [CanBeNull]
-        public Cell West { get; set; }
+        public CartesianCell West { get; set; }
 
         public override List<Cell> Neighbors {
-            get { return new[] { North, South, East, West }.Where(c => c != null).ToList(); }
+            get { return new Cell[] { North, South, East, West }.Where(c => c != null).ToList(); }
         }
 
-        
 
-        public CartesianCell(int row, int col) :base(row, col){
+
+        public CartesianCell(int row, int col) : base(row, col) {
         }
-        
-        
 
-        
-        
+        public Point Center(int cellSize) {
+            var cx = Column * cellSize + cellSize / 2;
+            var cy = Row * cellSize + cellSize / 2;
+
+            return new Point(cx, cy);
+        }
+
+
+
+
     }
 }

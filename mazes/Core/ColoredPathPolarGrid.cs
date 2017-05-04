@@ -26,37 +26,35 @@ namespace mazes.Core {
         }
 
         private void DrawPathInternal(PolarCell cell, Graphics g, int cellSize) {
+
+
+            var thisDistance = Path[cell];
+            if (thisDistance < 0)
+                return;
+
             var imgSize = 2 * Rows * cellSize;
             var center = imgSize / 2;
             var theta = 2 * Math.PI / _grid[cell.Row].Count;
 
-            var thisDistance = Path[cell];
-            if (thisDistance >= 0) {
-                var myBounds = cell.GetBounds(center, theta, cellSize).GetBounds();
-                var cx = myBounds.Left + myBounds.Width / 2;
-                var cy = myBounds.Top + myBounds.Height / 2;
-                using (var pen = new Pen(BackColor.Invert(), 2)) {
-                    if (cell.Inward != null && (Path[cell.Inward] == thisDistance + 1 || Path[cell.Inward] == thisDistance - 1 && thisDistance != 0)) {
-                        var theta2 = 2 * Math.PI / _grid[cell.Inward.Row].Count;
-                        var bounds = cell.Inward.GetBounds(center, theta2, cellSize).GetBounds();
-                        var x1 = bounds.Left + bounds.Width / 2;
-                        var y1 = bounds.Top + bounds.Height / 2;
-                        g.DrawLine(pen, cx, cy, x1, y1);
-                    }
-                    if (cell.CounterClockwise != null && (Path[cell.CounterClockwise] == thisDistance + 1 || Path[cell.CounterClockwise] == thisDistance - 1 && thisDistance != 0)) {
-                        var theta2 = 2 * Math.PI / _grid[cell.CounterClockwise.Row].Count;
-                        var bounds = cell.CounterClockwise.GetBounds(center, theta2, cellSize).GetBounds();
-                        var x1 = bounds.Left + bounds.Width / 2;
-                        var y1 = bounds.Top + bounds.Height / 2;
-                        g.DrawLine(pen, cx, cy, x1, y1);
-                    }
-                    if (thisDistance == 0) {
-                        g.DrawRectangle(pen, cx - 2, cy - 2, 4, 4);
-                    }
-                    if (thisDistance == _maxDistance) {
-                        g.DrawLine(pen, cx - 4, cy - 4, cx + 4, cy + 4);
-                        g.DrawLine(pen, cx + 4, cy - 4, cx - 4, cy + 4);
-                    }
+            var centerCell = cell.Center(center, theta, cellSize);
+
+            using (var pen = new Pen(BackColor.Invert(), 2)) {
+                if (cell.Inward != null && (Path[cell.Inward] == thisDistance + 1 || Path[cell.Inward] == thisDistance - 1 && thisDistance != 0)) {
+                    var theta2 = 2 * Math.PI / _grid[cell.Inward.Row].Count;
+                    var bounds = cell.Inward.Center(center, theta2, cellSize);
+                    g.DrawLine(pen, centerCell, bounds);
+                }
+                if (cell.CounterClockwise != null && (Path[cell.CounterClockwise] == thisDistance + 1 || Path[cell.CounterClockwise] == thisDistance - 1 && thisDistance != 0)) {
+                    var theta2 = 2 * Math.PI / _grid[cell.CounterClockwise.Row].Count;
+                    var bounds = cell.CounterClockwise.Center(center, theta2, cellSize);
+                    g.DrawLine(pen, centerCell, bounds);
+                }
+                if (thisDistance == 0) {
+                    g.DrawRectangle(pen, centerCell.X - 2, centerCell.Y - 2, 4, 4);
+                }
+                if (thisDistance == _maxDistance) {
+                    g.DrawLine(pen, centerCell.X - 4, centerCell.Y - 4, centerCell.X + 4, centerCell.Y + 4);
+                    g.DrawLine(pen, centerCell.X + 4, centerCell.Y - 4, centerCell.X - 4, centerCell.Y + 4);
                 }
             }
         }

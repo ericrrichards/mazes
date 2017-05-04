@@ -27,40 +27,28 @@ namespace mazes.Core {
 
         private void DrawPathInternal(HexCell cell, Graphics g, int cellSize) {
             var thisDistance = Path[cell];
-            if (thisDistance >= 0) {
-                var size = cellSize / 2;
-                var aSize = size / 2.0;
-                var bSize = size * Math.Sqrt(3) / 2.0;
-                var height = bSize * 2;
-
-                var cx = size + 3 * cell.Column * aSize;
-                var cy = bSize + cell.Row * height;
-                if (cell.Column % 2 == 1) {
-                    cy += bSize;
-                }
-                var cyi = (int)cy;
-                var cxi = (int)cx;
-                
-                using (var pen = new Pen(BackColor.Invert(), 2)) {
+            if (thisDistance < 0)
+                return;
+            var center = cell.Center(cellSize);
+            using (var pen = new Pen(BackColor.Invert(), 2)) {
                     
-                    if (cell.North != null && (Path[cell.North] == thisDistance + 1 || Path[cell.North] == thisDistance - 1 && thisDistance != 0)) {
-                        g.DrawLine(pen, cell.Center(cellSize), ((HexCell)cell.North).Center(cellSize));
-                    }
-                    if (cell.NorthEast != null && (Path[cell.NorthEast] == thisDistance + 1 || Path[cell.NorthEast] == thisDistance - 1 && thisDistance != 0)) {
-                        g.DrawLine(pen, cell.Center(cellSize), ((HexCell)cell.NorthEast).Center(cellSize));
-                    }
-                    if (cell.SouthEast != null && (Path[cell.SouthEast] == thisDistance + 1 || Path[cell.SouthEast] == thisDistance - 1 && thisDistance != 0)) {
-                        g.DrawLine(pen, cell.Center(cellSize), ((HexCell)cell.SouthEast).Center(cellSize));
-                    }
+                if (cell.North != null && (Path[cell.North] == thisDistance + 1 || Path[cell.North] == thisDistance - 1 && thisDistance != 0)) {
+                    g.DrawLine(pen, center, cell.North.Center(cellSize));
+                }
+                if (cell.NorthEast != null && (Path[cell.NorthEast] == thisDistance + 1 || Path[cell.NorthEast] == thisDistance - 1 && thisDistance != 0)) {
+                    g.DrawLine(pen, center, cell.NorthEast.Center(cellSize));
+                }
+                if (cell.SouthEast != null && (Path[cell.SouthEast] == thisDistance + 1 || Path[cell.SouthEast] == thisDistance - 1 && thisDistance != 0)) {
+                    g.DrawLine(pen, center, cell.SouthEast.Center(cellSize));
+                }
 
 
-                    if (thisDistance == 0) {
-                        g.DrawRectangle(pen, cxi - 2, cyi - 2, 4, 4);
-                    }
-                    if (thisDistance == _maxDistance) {
-                        g.DrawLine(pen, cxi - 4, cyi - 4, cxi + 4, cyi + 4);
-                        g.DrawLine(pen, cxi + 4, cyi - 4, cxi - 4, cyi + 4);
-                    }
+                if (thisDistance == 0) {
+                    g.DrawRectangle(pen, center.X - 2, center.Y - 2, 4, 4);
+                }
+                if (thisDistance == _maxDistance) {
+                    g.DrawLine(pen, center.X - 4, center.Y - 4, center.X + 4, center.Y + 4);
+                    g.DrawLine(pen, center.X + 4, center.Y - 4, center.X - 4, center.Y + 4);
                 }
             }
         }

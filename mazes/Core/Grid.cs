@@ -86,10 +86,10 @@ namespace mazes.Core {
                 var row = cell.Row;
                 var col = cell.Column;
 
-                cell.North = this[row - 1, col];
-                cell.South = this[row + 1, col];
-                cell.West = this[row, col - 1];
-                cell.East = this[row, col + 1];
+                cell.North = (CartesianCell)this[row - 1, col];
+                cell.South = (CartesianCell)this[row + 1, col];
+                cell.West = (CartesianCell)this[row, col - 1];
+                cell.East = (CartesianCell)this[row, col + 1];
             }
         }
 

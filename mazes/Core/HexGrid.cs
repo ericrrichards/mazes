@@ -39,12 +39,12 @@
                     northDiagonal = row;
                     southDiagonal = row + 1;
                 }
-                hCell.NorthWest = this[northDiagonal, column - 1];
-                hCell.North = this[row - 1, column];
-                hCell.NorthEast = this[northDiagonal, column + 1];
-                hCell.SouthWest = this[southDiagonal, column - 1];
-                hCell.South = this[row + 1, column];
-                hCell.SouthEast = this[southDiagonal, column + 1];
+                hCell.NorthWest = (HexCell)this[northDiagonal, column - 1];
+                hCell.North = (HexCell)this[row - 1, column];
+                hCell.NorthEast = (HexCell)this[northDiagonal, column + 1];
+                hCell.SouthWest = (HexCell)this[southDiagonal, column - 1];
+                hCell.South = (HexCell)this[row + 1, column];
+                hCell.SouthEast = (HexCell)this[southDiagonal, column + 1];
             }
         }
 
