@@ -75,6 +75,8 @@ namespace mazes.UI {
                     grid = new HexGrid(MazeSize, MazeSize * 3 / 2);
                 } else if (_mode == MazeStyle.Triangle) {
                     grid = new TriangleGrid(MazeSize, MazeSize*2);
+                } else if (_mode == MazeStyle.Upsilon) {
+                    grid = new UpsilonGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(grid)) {
                     return;
@@ -111,6 +113,8 @@ namespace mazes.UI {
                 _grid = new HexGrid(MazeSize, MazeSize * 3 / 2);
             } else if (_mode == MazeStyle.Triangle) {
                 _grid = new TriangleGrid(MazeSize, MazeSize*2);
+            } else if (_mode == MazeStyle.Upsilon) {
+                _grid = new UpsilonGrid(MazeSize, MazeSize);
             }
             pbMaze.Image = _grid.ToImg(GridSize);
             if (cbAlgorithm.SelectedItem != null) {
@@ -170,6 +174,8 @@ namespace mazes.UI {
                     colorGrid = new ColoredHexGrid(MazeSize, MazeSize * 3 / 2);
                 } else if (_mode == MazeStyle.Triangle) {
                     colorGrid = new ColoredTriangleGrid(MazeSize, MazeSize*2);
+                } else if (_mode == MazeStyle.Upsilon) {
+                    colorGrid = new ColoredUpsilonGrid(MazeSize, MazeSize);
                 }
 
                 if (!CreateSelectedMaze(colorGrid)) {
@@ -230,6 +236,8 @@ namespace mazes.UI {
                     colorGrid = new ColoredPathHexGrid(MazeSize, MazeSize*3/2);
                 } else if (_mode == MazeStyle.Triangle) {
                     colorGrid = new ColoredPathTriangleGrid(MazeSize, MazeSize*2);
+                } else if (_mode == MazeStyle.Upsilon) {
+                    colorGrid = new ColoredPathUpsilonGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(colorGrid)) {
                     return;
@@ -305,6 +313,11 @@ namespace mazes.UI {
                 GridSize = 50;
                 ClearMask();
 
+            } else if (rbUpsilon.Checked) {
+                _mode = MazeStyle.Upsilon;
+                GridSize = 50;
+                ClearMask();
+
             }
             ToggleEnableMaskButton();
             ResetMaze(sender, e);
@@ -339,6 +352,7 @@ namespace mazes.UI {
         Square,
         Polar,
         Hex,
-        Triangle
+        Triangle,
+        Upsilon
     }
 }

@@ -15,7 +15,7 @@
                 (_end, _maxDistance) = value.Max;
             }
         }
-        public int PathLength => _maxDistance+1;
+        public int PathLength => _maxDistance + 1;
 
         protected override void DrawPath(Cell cell, Graphics g, int cellSize) {
             if (Path == null) {
@@ -30,11 +30,11 @@
                 return;
             var center = cell.Center(cellSize);
             using (var pen = new Pen(BackColor.Invert(), 2)) {
-                    
+
                 if (cell.North != null && (Path[cell.North] == thisDistance + 1 || Path[cell.North] == thisDistance - 1 && thisDistance != 0)) {
                     g.DrawLine(pen, center, cell.North.Center(cellSize));
                 }
-                    
+
                 if (cell.East != null && (Path[cell.East] == thisDistance + 1 || Path[cell.East] == thisDistance - 1 && thisDistance != 0)) {
                     g.DrawLine(pen, center, cell.East.Center(cellSize));
                 }

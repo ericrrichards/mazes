@@ -57,6 +57,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.rbTriangle = new System.Windows.Forms.RadioButton();
+            this.rbUpsilon = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,13 +107,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rbUpsilon);
             this.groupBox1.Controls.Add(this.rbTriangle);
             this.groupBox1.Controls.Add(this.rbHex);
             this.groupBox1.Controls.Add(this.rbPolar);
             this.groupBox1.Controls.Add(this.rbSquare);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 128);
+            this.groupBox1.Size = new System.Drawing.Size(171, 134);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maze Style";
@@ -154,7 +156,7 @@
             // 
             // pbMask
             // 
-            this.pbMask.Location = new System.Drawing.Point(12, 530);
+            this.pbMask.Location = new System.Drawing.Point(12, 545);
             this.pbMask.Name = "pbMask";
             this.pbMask.Size = new System.Drawing.Size(120, 120);
             this.pbMask.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -163,7 +165,7 @@
             // 
             // btnLoadMask
             // 
-            this.btnLoadMask.Location = new System.Drawing.Point(12, 501);
+            this.btnLoadMask.Location = new System.Drawing.Point(12, 516);
             this.btnLoadMask.Name = "btnLoadMask";
             this.btnLoadMask.Size = new System.Drawing.Size(120, 23);
             this.btnLoadMask.TabIndex = 13;
@@ -173,7 +175,7 @@
             // 
             // btnAnimate
             // 
-            this.btnAnimate.Location = new System.Drawing.Point(12, 286);
+            this.btnAnimate.Location = new System.Drawing.Point(12, 301);
             this.btnAnimate.Name = "btnAnimate";
             this.btnAnimate.Size = new System.Drawing.Size(120, 23);
             this.btnAnimate.TabIndex = 12;
@@ -183,7 +185,7 @@
             // 
             // btnLongestPath
             // 
-            this.btnLongestPath.Location = new System.Drawing.Point(12, 472);
+            this.btnLongestPath.Location = new System.Drawing.Point(12, 487);
             this.btnLongestPath.Name = "btnLongestPath";
             this.btnLongestPath.Size = new System.Drawing.Size(120, 23);
             this.btnLongestPath.TabIndex = 11;
@@ -193,7 +195,7 @@
             // 
             // btnDrawPath
             // 
-            this.btnDrawPath.Location = new System.Drawing.Point(12, 443);
+            this.btnDrawPath.Location = new System.Drawing.Point(12, 458);
             this.btnDrawPath.Name = "btnDrawPath";
             this.btnDrawPath.Size = new System.Drawing.Size(120, 23);
             this.btnDrawPath.TabIndex = 10;
@@ -203,7 +205,7 @@
             // 
             // btnColorize
             // 
-            this.btnColorize.Location = new System.Drawing.Point(12, 409);
+            this.btnColorize.Location = new System.Drawing.Point(12, 424);
             this.btnColorize.Name = "btnColorize";
             this.btnColorize.Size = new System.Drawing.Size(120, 28);
             this.btnColorize.TabIndex = 9;
@@ -213,7 +215,7 @@
             // 
             // btnPickColor
             // 
-            this.btnPickColor.Location = new System.Drawing.Point(47, 374);
+            this.btnPickColor.Location = new System.Drawing.Point(47, 389);
             this.btnPickColor.Name = "btnPickColor";
             this.btnPickColor.Size = new System.Drawing.Size(85, 28);
             this.btnPickColor.TabIndex = 8;
@@ -224,7 +226,7 @@
             // pbColor
             // 
             this.pbColor.BackColor = System.Drawing.Color.Red;
-            this.pbColor.Location = new System.Drawing.Point(12, 374);
+            this.pbColor.Location = new System.Drawing.Point(12, 389);
             this.pbColor.Name = "pbColor";
             this.pbColor.Size = new System.Drawing.Size(29, 28);
             this.pbColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,7 +236,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 344);
+            this.btnSave.Location = new System.Drawing.Point(12, 359);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 23);
             this.btnSave.TabIndex = 6;
@@ -246,7 +248,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(13, 144);
+            this.label2.Location = new System.Drawing.Point(13, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 5;
@@ -254,7 +256,7 @@
             // 
             // nudRNGSeed
             // 
-            this.nudRNGSeed.Location = new System.Drawing.Point(13, 160);
+            this.nudRNGSeed.Location = new System.Drawing.Point(13, 175);
             this.nudRNGSeed.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -266,7 +268,7 @@
             // 
             // btnDraw
             // 
-            this.btnDraw.Location = new System.Drawing.Point(12, 315);
+            this.btnDraw.Location = new System.Drawing.Point(12, 330);
             this.btnDraw.Name = "btnDraw";
             this.btnDraw.Size = new System.Drawing.Size(120, 23);
             this.btnDraw.TabIndex = 1;
@@ -276,7 +278,7 @@
             // 
             // btnStep
             // 
-            this.btnStep.Location = new System.Drawing.Point(13, 257);
+            this.btnStep.Location = new System.Drawing.Point(13, 272);
             this.btnStep.Name = "btnStep";
             this.btnStep.Size = new System.Drawing.Size(120, 23);
             this.btnStep.TabIndex = 3;
@@ -286,7 +288,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(12, 226);
+            this.btnReset.Location = new System.Drawing.Point(12, 241);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(120, 23);
             this.btnReset.TabIndex = 2;
@@ -298,7 +300,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(13, 183);
+            this.label1.Location = new System.Drawing.Point(13, 198);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 1;
@@ -307,7 +309,7 @@
             // cbAlgorithm
             // 
             this.cbAlgorithm.FormattingEnabled = true;
-            this.cbAlgorithm.Location = new System.Drawing.Point(13, 199);
+            this.cbAlgorithm.Location = new System.Drawing.Point(13, 214);
             this.cbAlgorithm.Name = "cbAlgorithm";
             this.cbAlgorithm.Size = new System.Drawing.Size(121, 21);
             this.cbAlgorithm.TabIndex = 0;
@@ -399,6 +401,17 @@
             this.rbTriangle.UseVisualStyleBackColor = true;
             this.rbTriangle.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
+            // rbUpsilon
+            // 
+            this.rbUpsilon.AutoSize = true;
+            this.rbUpsilon.Location = new System.Drawing.Point(6, 111);
+            this.rbUpsilon.Name = "rbUpsilon";
+            this.rbUpsilon.Size = new System.Drawing.Size(60, 17);
+            this.rbUpsilon.TabIndex = 4;
+            this.rbUpsilon.Text = "Upsilon";
+            this.rbUpsilon.UseVisualStyleBackColor = true;
+            this.rbUpsilon.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            // 
             // MazeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,5 +476,6 @@
         private System.Windows.Forms.RadioButton rbSquare;
         private System.Windows.Forms.RadioButton rbHex;
         private System.Windows.Forms.RadioButton rbTriangle;
+        private System.Windows.Forms.RadioButton rbUpsilon;
     }
 }

@@ -18,11 +18,7 @@
         [CanBeNull]
         public CartesianCell West { get; set; }
 
-        public override List<Cell> Neighbors {
-            get { return new Cell[] { North, South, East, West }.Where(c => c != null).ToList(); }
-        }
-
-
+        public override List<Cell> Neighbors => new Cell[] { North, South, East, West }.Where(c => c != null).ToList();
 
         public CartesianCell(int row, int col) : base(row, col) {
         }
@@ -33,9 +29,7 @@
 
             return new Point(cx, cy);
         }
-
-
-
-
     }
+
+    
 }
