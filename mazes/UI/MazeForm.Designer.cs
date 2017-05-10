@@ -26,6 +26,8 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbUpsilon = new System.Windows.Forms.RadioButton();
+            this.rbTriangle = new System.Windows.Forms.RadioButton();
             this.rbHex = new System.Windows.Forms.RadioButton();
             this.rbPolar = new System.Windows.Forms.RadioButton();
             this.rbSquare = new System.Windows.Forms.RadioButton();
@@ -56,8 +58,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.rbTriangle = new System.Windows.Forms.RadioButton();
-            this.rbUpsilon = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudBraid = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +71,7 @@
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
             this.cmsPickStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -79,6 +82,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.nudBraid);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.pbMask);
             this.splitContainer1.Panel1.Controls.Add(this.btnLoadMask);
@@ -101,7 +106,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.pbMaze);
-            this.splitContainer1.Size = new System.Drawing.Size(897, 706);
+            this.splitContainer1.Size = new System.Drawing.Size(897, 747);
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -118,6 +123,28 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maze Style";
+            // 
+            // rbUpsilon
+            // 
+            this.rbUpsilon.AutoSize = true;
+            this.rbUpsilon.Location = new System.Drawing.Point(6, 111);
+            this.rbUpsilon.Name = "rbUpsilon";
+            this.rbUpsilon.Size = new System.Drawing.Size(60, 17);
+            this.rbUpsilon.TabIndex = 4;
+            this.rbUpsilon.Text = "Upsilon";
+            this.rbUpsilon.UseVisualStyleBackColor = true;
+            this.rbUpsilon.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            // 
+            // rbTriangle
+            // 
+            this.rbTriangle.AutoSize = true;
+            this.rbTriangle.Location = new System.Drawing.Point(6, 88);
+            this.rbTriangle.Name = "rbTriangle";
+            this.rbTriangle.Size = new System.Drawing.Size(63, 17);
+            this.rbTriangle.TabIndex = 3;
+            this.rbTriangle.Text = "Triangle";
+            this.rbTriangle.UseVisualStyleBackColor = true;
+            this.rbTriangle.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
             // 
             // rbHex
             // 
@@ -321,7 +348,7 @@
             this.tsslStartPoint,
             this.tsslEndPoint,
             this.tsslPathLength});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 684);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 725);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(673, 22);
             this.statusStrip1.TabIndex = 1;
@@ -390,33 +417,39 @@
             // 
             this.openFileDialog1.Filter = "Images|*.png";
             // 
-            // rbTriangle
+            // label3
             // 
-            this.rbTriangle.AutoSize = true;
-            this.rbTriangle.Location = new System.Drawing.Point(6, 88);
-            this.rbTriangle.Name = "rbTriangle";
-            this.rbTriangle.Size = new System.Drawing.Size(63, 17);
-            this.rbTriangle.TabIndex = 3;
-            this.rbTriangle.Text = "Triangle";
-            this.rbTriangle.UseVisualStyleBackColor = true;
-            this.rbTriangle.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(13, 668);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Braid Ratio";
             // 
-            // rbUpsilon
+            // nudBraid
             // 
-            this.rbUpsilon.AutoSize = true;
-            this.rbUpsilon.Location = new System.Drawing.Point(6, 111);
-            this.rbUpsilon.Name = "rbUpsilon";
-            this.rbUpsilon.Size = new System.Drawing.Size(60, 17);
-            this.rbUpsilon.TabIndex = 4;
-            this.rbUpsilon.Text = "Upsilon";
-            this.rbUpsilon.UseVisualStyleBackColor = true;
-            this.rbUpsilon.CheckedChanged += new System.EventHandler(this.rbSquare_CheckedChanged);
+            this.nudBraid.DecimalPlaces = 1;
+            this.nudBraid.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudBraid.Location = new System.Drawing.Point(13, 684);
+            this.nudBraid.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.nudBraid.Name = "nudBraid";
+            this.nudBraid.Size = new System.Drawing.Size(120, 20);
+            this.nudBraid.TabIndex = 16;
             // 
             // MazeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 706);
+            this.ClientSize = new System.Drawing.Size(897, 747);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "MazeForm";
@@ -437,6 +470,7 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
             this.cmsPickStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,5 +511,7 @@
         private System.Windows.Forms.RadioButton rbHex;
         private System.Windows.Forms.RadioButton rbTriangle;
         private System.Windows.Forms.RadioButton rbUpsilon;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown nudBraid;
     }
 }

@@ -193,6 +193,25 @@ namespace mazes.Core {
         public List<Cell> Deadends() {
             return Cells.Where(c => c.Links.Count == 1).ToList();
         }
+
+        public void Braid(double p = 1.0f) {
+            var rand = new Random();
+            foreach (var cell in Deadends().Shuffle()) {
+                if (cell.Links.Count != 1 || rand.NextDouble() > p) {
+                    continue;
+                }
+                var neighbors = cell.Neighbors.Where(n => !cell.IsLinked(n)).ToList();
+                var best = neighbors.Where(n => n.Links.Count == 1).ToList();
+                if (!best.Any()) {
+                    best = neighbors;
+                    if (!best.Any()) {
+                        continue;
+                    }
+                }
+                var neighbor = best.Sample(rand);
+                cell.Link(neighbor);
+            }
+        }
     }
 
     public enum DrawMode {

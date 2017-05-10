@@ -13,9 +13,12 @@
         public List<Cell> Links => _links.Keys.ToList();
         public abstract List<Cell> Neighbors { get; }
 
+        public int Weight { get; set; }
+
         public Cell(int row, int col) {
             Row = row;
             Column = col;
+            Weight = 1;
             _links = new Dictionary<Cell, bool>();
         }
 
@@ -60,6 +63,28 @@
                     frontier = newFrontier;
                 }
                 return distances;
+            }
+        }
+
+        public Distances WeightedDistances {
+            get {
+                var weights = new Distances(this);
+                var pending = new HashSet<Cell>{this};
+
+                while (pending.Any()) {
+                    var cell = pending.OrderBy(c => weights[c]).First();
+                    pending.Remove(cell);
+
+                    foreach (var neighbor in cell.Links) {
+                        var totalWeight = weights[cell] + neighbor.Weight;
+                        if (weights[neighbor] >= 0 || totalWeight < weights[neighbor]) {
+                            pending.Add(neighbor);
+                            weights[neighbor] = totalWeight;
+                        }
+                    }
+                }
+
+                return weights;
             }
         }
     }

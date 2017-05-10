@@ -8,5 +8,6 @@ namespace mazes.Core {
         int Rows { get; }
         int Columns { get; }
         Image ToImg(int cellSize = 50);
+        void Braid(double p = 1.0f);
     }
 }

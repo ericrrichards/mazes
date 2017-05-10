@@ -99,6 +99,9 @@ namespace mazes.UI {
             }
 
             type.GetMethod("Maze", new[] { typeof(Grid), typeof(int) }).Invoke(null, new object[] { grid, (int)nudRNGSeed.Value });
+
+            grid.Braid((double) nudBraid.Value);
+
             return true;
         }
 
