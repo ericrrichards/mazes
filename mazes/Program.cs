@@ -7,6 +7,10 @@ namespace mazes {
 
     using mazes.Algorithms;
     using mazes.Core;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Masked;
+    using mazes.Core.Grids.Polar;
+    using mazes.Core.Grids.Sigma;
     using mazes.UI;
 
     internal static class Program {

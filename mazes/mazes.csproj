@@ -56,40 +56,41 @@
     <Compile Include="Algorithms\HuntAndKill.cs" />
     <Compile Include="Algorithms\RecursiveBacktracker.cs" />
     <Compile Include="Algorithms\Wilsons.cs" />
-    <Compile Include="Core\CartesianCell.cs" />
-    <Compile Include="Core\Cell.cs" />
-    <Compile Include="Core\ColoredGrid.cs" />
-    <Compile Include="Core\ColoredHexGrid.cs" />
-    <Compile Include="Core\ColoredPathGrid.cs" />
-    <Compile Include="Core\ColoredPathHexGrid.cs" />
-    <Compile Include="Core\ColoredPathPolarGrid.cs" />
-    <Compile Include="Core\ColoredPathTriangleGrid.cs" />
-    <Compile Include="Core\ColoredPathUpsilonGrid.cs" />
-    <Compile Include="Core\ColoredPolarGrid.cs" />
-    <Compile Include="Core\ColoredTriangleGrid.cs" />
-    <Compile Include="Core\ColoredUpsilonGrid.cs" />
+    <Compile Include="Core\Cells\CartesianCell.cs" />
+    <Compile Include="Core\Cells\Cell.cs" />
+    <Compile Include="Core\Grids\Cartesian\ColoredGrid.cs" />
+    <Compile Include="Core\Grids\Hex\ColoredHexGrid.cs" />
+    <Compile Include="Core\Grids\Cartesian\ColoredPathGrid.cs" />
+    <Compile Include="Core\Grids\Hex\ColoredPathHexGrid.cs" />
+    <Compile Include="Core\Grids\Polar\ColoredPathPolarGrid.cs" />
+    <Compile Include="Core\Grids\Sigma\ColoredPathTriangleGrid.cs" />
+    <Compile Include="Core\Grids\Upsilon\ColoredPathUpsilonGrid.cs" />
+    <Compile Include="Core\Grids\Polar\ColoredPolarGrid.cs" />
+    <Compile Include="Core\Grids\Sigma\ColoredTriangleGrid.cs" />
+    <Compile Include="Core\Grids\Upsilon\ColoredUpsilonGrid.cs" />
     <Compile Include="Core\ColorExtensions.cs" />
-    <Compile Include="Core\DistanceGrid.cs" />
+    <Compile Include="Core\Grids\Cartesian\DistanceGrid.cs" />
     <Compile Include="Core\Distances.cs" />
-    <Compile Include="Core\Grid.cs" />
+    <Compile Include="Core\DrawMode.cs" />
+    <Compile Include="Core\Grids\Cartesian\Grid.cs" />
     <Compile Include="Algorithms\IMazeAlgorithm.cs" />
-    <Compile Include="Core\HexCell.cs" />
-    <Compile Include="Core\HexGrid.cs" />
-    <Compile Include="Core\IColoredGrid.cs" />
-    <Compile Include="Core\IGrid.cs" />
+    <Compile Include="Core\Cells\HexCell.cs" />
+    <Compile Include="Core\Grids\Hex\HexGrid.cs" />
+    <Compile Include="Core\Grids\Interfaces\IColoredGrid.cs" />
+    <Compile Include="Core\Grids\Interfaces\IGrid.cs" />
     <Compile Include="Core\IntExtensions.cs" />
-    <Compile Include="Core\IPathGrid.cs" />
+    <Compile Include="Core\Grids\Interfaces\IPathGrid.cs" />
     <Compile Include="Core\ListExtensions.cs" />
     <Compile Include="Core\Mask.cs" />
-    <Compile Include="Core\MaskedColoredGrid.cs" />
-    <Compile Include="Core\MaskedColoredPathGrid.cs" />
-    <Compile Include="Core\MaskedGrid.cs" />
-    <Compile Include="Core\OctagonCell.cs" />
-    <Compile Include="Core\PolarCell.cs" />
-    <Compile Include="Core\PolarGrid.cs" />
-    <Compile Include="Core\TriangleCell.cs" />
-    <Compile Include="Core\TriangleGrid.cs" />
-    <Compile Include="Core\UpsilonGrid.cs" />
+    <Compile Include="Core\Grids\Masked\MaskedColoredGrid.cs" />
+    <Compile Include="Core\Grids\Masked\MaskedColoredPathGrid.cs" />
+    <Compile Include="Core\Grids\Masked\MaskedGrid.cs" />
+    <Compile Include="Core\Cells\OctagonCell.cs" />
+    <Compile Include="Core\Cells\PolarCell.cs" />
+    <Compile Include="Core\Grids\Polar\PolarGrid.cs" />
+    <Compile Include="Core\Cells\TriangleCell.cs" />
+    <Compile Include="Core\Grids\Sigma\TriangleGrid.cs" />
+    <Compile Include="Core\Grids\Upsilon\UpsilonGrid.cs" />
     <Compile Include="UI\MazeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +115,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

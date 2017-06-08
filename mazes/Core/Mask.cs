@@ -5,6 +5,10 @@
     using System.IO;
     using System.Linq;
 
+    using mazes.Core.Cells;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Cartesian;
+
     public class Mask {
         public int Rows { get; }
         public int Columns { get; }

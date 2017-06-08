@@ -3,6 +3,10 @@ using System.Linq;
 using mazes.Core;
 
 namespace mazes.Algorithms {
+    using mazes.Core.Cells;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Cartesian;
+
     public class HuntAndKill : IMazeAlgorithm {
         public Cell CurrentCell { get; private set; }
         private readonly Grid _grid;

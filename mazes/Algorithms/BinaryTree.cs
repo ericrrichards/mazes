@@ -4,6 +4,9 @@
     using System.Linq;
 
     using mazes.Core;
+    using mazes.Core.Cells;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Cartesian;
 
     public class BinaryTree : IMazeAlgorithm {
         private readonly Grid _grid;

@@ -10,6 +10,16 @@ namespace mazes.UI {
     using Algorithms;
     using Core;
 
+    using mazes.Core.Cells;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Cartesian;
+    using mazes.Core.Grids.Hex;
+    using mazes.Core.Grids.Interfaces;
+    using mazes.Core.Grids.Masked;
+    using mazes.Core.Grids.Polar;
+    using mazes.Core.Grids.Sigma;
+    using mazes.Core.Grids.Upsilon;
+
     public partial class MazeForm : Form {
         private int GridSize = 50;
         private const int MazeSize = 11;

@@ -4,6 +4,10 @@ using System.Linq;
 using mazes.Core;
 
 namespace mazes.Algorithms {
+    using mazes.Core.Cells;
+    using mazes.Core.Grids;
+    using mazes.Core.Grids.Cartesian;
+
     public class Wilsons : IMazeAlgorithm {
         private readonly Grid _grid;
         private readonly Random _rand;
