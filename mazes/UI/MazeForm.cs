@@ -25,7 +25,7 @@ namespace mazes.UI {
         public MazeForm() {
             InitializeComponent();
             _grid = new Grid(MazeSize, MazeSize);
-            pbMaze.Image = _grid.ToImg(GridSize);
+            pbMaze.Image = _grid.ToImg(GridSize, (float)nudInset.Value);
             var it = typeof(IMazeAlgorithm);
             var algoNames = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes())
                 .Where(t => it.IsAssignableFrom(t) && t.IsClass).Select(t => t.Name).ToArray();
@@ -81,7 +81,7 @@ namespace mazes.UI {
                 if (!CreateSelectedMaze(grid)) {
                     return;
                 }
-                img = grid.ToImg(GridSize);
+                img = grid.ToImg(GridSize, (float)nudInset.Value);
                 pbMaze.Image = img;
             }
         }
@@ -119,7 +119,7 @@ namespace mazes.UI {
             } else if (_mode == MazeStyle.Upsilon) {
                 _grid = new UpsilonGrid(MazeSize, MazeSize);
             }
-            pbMaze.Image = _grid.ToImg(GridSize);
+            pbMaze.Image = _grid.ToImg(GridSize, (float)nudInset.Value);
             if (cbAlgorithm.SelectedItem != null) {
                 SetAlgorithm();
             }
@@ -150,7 +150,7 @@ namespace mazes.UI {
                 btnStep.Enabled = false;
             }
             _grid.ActiveCell = _algorithm.CurrentCell;
-            pbMaze.Image = _grid.ToImg(GridSize);
+            pbMaze.Image = _grid.ToImg(GridSize, (float)nudInset.Value);
         }
 
         private void btnSave_Click(object sender, EventArgs e) {
@@ -198,7 +198,7 @@ namespace mazes.UI {
 
                 colorGrid.BackColor = pbColor.BackColor;
 
-                pbMaze.Image = colorGrid.ToImg(GridSize);
+                pbMaze.Image = colorGrid.ToImg(GridSize, (float)nudInset.Value);
             }
         }
 
@@ -222,7 +222,7 @@ namespace mazes.UI {
 
                 colorGrid.BackColor = pbColor.BackColor;
 
-                pbMaze.Image = colorGrid.ToImg(GridSize);
+                pbMaze.Image = colorGrid.ToImg(GridSize, (float)nudInset.Value);
             }
 
         }
@@ -265,7 +265,7 @@ namespace mazes.UI {
 
                 colorGrid.BackColor = pbColor.BackColor;
 
-                pbMaze.Image = colorGrid.ToImg(GridSize);
+                pbMaze.Image = colorGrid.ToImg(GridSize, (float)nudInset.Value);
             }
         }
 
@@ -274,7 +274,7 @@ namespace mazes.UI {
             IsAnimating = true;
             while (_algorithm.Step() && IsAnimating) {
                 _grid.ActiveCell = _algorithm.CurrentCell;
-                pbMaze.Image = _grid.ToImg(GridSize);
+                pbMaze.Image = _grid.ToImg(GridSize, (float)nudInset.Value);
 
                 Application.DoEvents();
                 Thread.Sleep(100);

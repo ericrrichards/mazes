@@ -80,7 +80,7 @@
             }
         }
 
-        public override Image ToImg(int cellSize = 50) {
+        public override Image ToImg(int cellSize = 50, float insetPrc = 0.0f) {
             var imgSize = 2 * Rows * cellSize;
             var center = imgSize / 2;
 

@@ -48,7 +48,7 @@
             }
         }
 
-        public override Image ToImg(int cellSize = 50) {
+        public override Image ToImg(int cellSize = 50, float insetPrc = 0.0f) {
             var size = cellSize / 2;
             var aSize = size / 2.0;
             var bSize = size * Math.Sqrt(3) / 2.0;

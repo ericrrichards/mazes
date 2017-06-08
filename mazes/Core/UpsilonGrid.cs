@@ -46,7 +46,7 @@ namespace mazes.Core {
             }
         }
 
-        public override Image ToImg(int cellSize = 50) {
+        public override Image ToImg(int cellSize = 50, float insetPrc = 0.0f) {
             cellSize = cellSize / 2;
 
             var aSize = cellSize / 2.0;

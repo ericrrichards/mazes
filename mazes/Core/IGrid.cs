@@ -7,7 +7,7 @@ namespace mazes.Core {
         Cell this[int row, int column] { get; }
         int Rows { get; }
         int Columns { get; }
-        Image ToImg(int cellSize = 50);
+        Image ToImg(int cellSize = 50, float insetPrc = 0.0f);
         void Braid(double p = 1.0f);
     }
 }

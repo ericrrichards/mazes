@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudBraid = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbUpsilon = new System.Windows.Forms.RadioButton();
             this.rbTriangle = new System.Windows.Forms.RadioButton();
@@ -58,12 +60,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nudBraid = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nudInset = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).BeginInit();
@@ -71,7 +74,7 @@
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).BeginInit();
             this.cmsPickStart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudInset)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -82,6 +85,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.nudInset);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.nudBraid);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
@@ -109,6 +114,34 @@
             this.splitContainer1.Size = new System.Drawing.Size(897, 747);
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(13, 668);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Braid Ratio";
+            // 
+            // nudBraid
+            // 
+            this.nudBraid.DecimalPlaces = 1;
+            this.nudBraid.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudBraid.Location = new System.Drawing.Point(13, 684);
+            this.nudBraid.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.nudBraid.Name = "nudBraid";
+            this.nudBraid.Size = new System.Drawing.Size(120, 20);
+            this.nudBraid.TabIndex = 16;
             // 
             // groupBox1
             // 
@@ -417,33 +450,33 @@
             // 
             this.openFileDialog1.Filter = "Images|*.png";
             // 
-            // label3
+            // label4
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(13, 668);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Braid Ratio";
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(13, 707);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Inset";
             // 
-            // nudBraid
+            // nudInset
             // 
-            this.nudBraid.DecimalPlaces = 1;
-            this.nudBraid.Increment = new decimal(new int[] {
+            this.nudInset.DecimalPlaces = 1;
+            this.nudInset.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nudBraid.Location = new System.Drawing.Point(13, 684);
-            this.nudBraid.Maximum = new decimal(new int[] {
-            10,
+            this.nudInset.Location = new System.Drawing.Point(13, 723);
+            this.nudInset.Maximum = new decimal(new int[] {
+            5,
             0,
             0,
             65536});
-            this.nudBraid.Name = "nudBraid";
-            this.nudBraid.Size = new System.Drawing.Size(120, 20);
-            this.nudBraid.TabIndex = 16;
+            this.nudInset.Name = "nudInset";
+            this.nudInset.Size = new System.Drawing.Size(120, 20);
+            this.nudInset.TabIndex = 18;
             // 
             // MazeForm
             // 
@@ -461,6 +494,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMask)).EndInit();
@@ -470,7 +504,7 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaze)).EndInit();
             this.cmsPickStart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudBraid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudInset)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,5 +547,7 @@
         private System.Windows.Forms.RadioButton rbUpsilon;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudBraid;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown nudInset;
     }
 }
