@@ -87,6 +87,8 @@ namespace mazes.UI {
                     grid = new TriangleGrid(MazeSize, MazeSize*2);
                 } else if (_mode == MazeStyle.Upsilon) {
                     grid = new UpsilonGrid(MazeSize, MazeSize);
+                } else if (_mode == MazeStyle.Weave) {
+                    grid = new WeaveGrid(MazeSize, MazeSize);
                 }
                 if (!CreateSelectedMaze(grid)) {
                     return;
@@ -128,6 +130,8 @@ namespace mazes.UI {
                 _grid = new TriangleGrid(MazeSize, MazeSize*2);
             } else if (_mode == MazeStyle.Upsilon) {
                 _grid = new UpsilonGrid(MazeSize, MazeSize);
+            } else if (_mode == MazeStyle.Weave) {
+                _grid = new WeaveGrid(MazeSize, MazeSize);
             }
             pbMaze.Image = _grid.ToImg(GridSize, (float)nudInset.Value);
             if (cbAlgorithm.SelectedItem != null) {
@@ -331,6 +335,10 @@ namespace mazes.UI {
                 GridSize = 50;
                 ClearMask();
 
+            } else if (rbWeave.Checked) {
+                _mode = MazeStyle.Weave;
+                GridSize = 50;
+                ClearMask();
             }
             ToggleEnableMaskButton();
             ResetMaze(sender, e);
@@ -366,6 +374,7 @@ namespace mazes.UI {
         Polar,
         Hex,
         Triangle,
-        Upsilon
+        Upsilon,
+        Weave
     }
 }

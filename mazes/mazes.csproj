@@ -58,6 +58,8 @@
     <Compile Include="Algorithms\Wilsons.cs" />
     <Compile Include="Core\Cells\CartesianCell.cs" />
     <Compile Include="Core\Cells\Cell.cs" />
+    <Compile Include="Core\Cells\OverCell.cs" />
+    <Compile Include="Core\Grids\WeaveGrid.cs" />
     <Compile Include="Core\Grids\Cartesian\ColoredGrid.cs" />
     <Compile Include="Core\Grids\Hex\ColoredHexGrid.cs" />
     <Compile Include="Core\Grids\Cartesian\ColoredPathGrid.cs" />

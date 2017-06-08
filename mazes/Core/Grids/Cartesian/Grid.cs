@@ -54,7 +54,7 @@
             }
         }
         // Cell iterator
-        public IEnumerable<Cell> Cells {
+        public virtual IEnumerable<Cell> Cells {
             get {
                 foreach (var row in Row) {
                     foreach (var cell in row) {
@@ -156,7 +156,7 @@
             return img;
         }
 
-        private void ToImgWithInset(Graphics g, CartesianCell cell, DrawMode mode, int cellSize, int x, int y, int inset) {
+        protected virtual void ToImgWithInset(Graphics g, CartesianCell cell, DrawMode mode, int cellSize, int x, int y, int inset) {
             var (x1, x2, x3, x4, y1, y2, y3, y4) = CellCoordinatesWithInset(x, y, cellSize, inset);
 
             if (mode == DrawMode.Background) {
@@ -215,7 +215,7 @@
             }
         }
 
-        private (int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) CellCoordinatesWithInset(int x, int y, int cellSize, int inset) {
+        protected (int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) CellCoordinatesWithInset(int x, int y, int cellSize, int inset) {
             var x1 = x;
             var x4 = x + cellSize;
             var x2 = x1 + inset;

@@ -22,13 +22,13 @@
             _links = new Dictionary<Cell, bool>();
         }
 
-        public void Link(Cell cell, bool bidirectional = true) {
+        public virtual void Link(Cell cell, bool bidirectional = true) {
             _links[cell] = true;
             if (bidirectional) {
                 cell.Link(this, false);
             }
         }
-        public void Unlink(Cell cell, bool bidirectional = true) {
+        public virtual void Unlink(Cell cell, bool bidirectional = true) {
             _links.Remove(cell);
             if (bidirectional) {
                 cell.Unlink(this, false);

@@ -29,7 +29,7 @@
 
             return new Point(cx, cy);
         }
+        public virtual bool HorizontalPassage => false;
+        public virtual bool VerticalPassage => false;
     }
-
-    
 }
